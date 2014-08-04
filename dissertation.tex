@@ -1,0 +1,21 @@
+\documentclass[a4paper,12pt]{report}
+
+\input{contrib/packages}		% Подключаемые пакеты
+\input{contrib/styles}			% Пользовательские стили
+
+\begin{document}
+
+\input{contrib/names}			% Переопределение именований
+
+\input{01-title}			% Титульный лист
+\input{contrib/contents}		% Оглавление
+\input{02-introduction}	% Введение
+\input{03-part1}			% Глава 1
+\input{04-part2}			% Глава 2
+\input{05-part3}			% Глава 3
+\input{06-conclusion}		% Заключение
+\input{parts/lists}			% Списки таблиц и изображений
+\input{parts/references}		% Список литературы
+\input{parts/appendix}		% Приложения
+
+\end{document}
