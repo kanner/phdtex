@@ -4,38 +4,73 @@
 
 %%% Кодировки и шрифты %%%
 \usepackage{cmap}						% Улучшенный поиск русских слов в полученном pdf-файле
-\usepackage[T2A]{fontenc}				% Поддержка русских букв
-\usepackage[utf8]{inputenc}				% Кодировка utf8
-\usepackage[english, russian]{babel}	% Языки: русский, английский
+\usepackage[T2A]{fontenc}				% Поддержка русских букв (кодировка)
+\usepackage[utf8]{inputenc}				% Кодировка utf8 (исходного текста)
+\usepackage[english, russian]{babel}	% Языки: русский, английский (локализация и переносы)
 \usepackage{pscyr}						% Красивые русские шрифты
+%\usepackage{extsizes}					% Возможность сделать 14-й шрифт
+
+%%% Альтернативные шрифты %%%
+%\usepackage[english, russian]{babel}
+%\usepackage{fontspec}					% загрузка шрифтов Open Type, True Type и др.
+%\usepackage{euscript}					% Шрифт Евклид
+%\usepackage{mathrsfs}					% Красивый матшрифт
+
+%%% Оформление абзацев, колонтитулов, текста %%%
+\usepackage{indentfirst}	% Красная строка
+\frenchspacing
+%\usepackage{fancyhdr}		% Колонтитулы
+\usepackage{setspace}		% Интерлиньяж
 
 %%% Математические пакеты %%%
-\usepackage{amsthm,amsfonts,amsmath,amssymb,amscd} % Математические дополнения от AMS
-
-%%% Оформление абзацев %%%
-\usepackage{indentfirst} % Красная строка
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools,amscd}	% Математические дополнения от AMS
+\usepackage{icomma}												% "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+\usepackage{mathtext}											% русские буквы в формулах
+%\usepackage{leqno}												% Нумерация формул слева
 
 %%% Цвета %%%
 \usepackage[usenames]{color}
 \usepackage{color}
 \usepackage{colortbl}
+\usepackage[usenames,dvipsnames,svgnames,table,rgb]{xcolor}
 
 %%% Таблицы %%%
-\usepackage{longtable}					% Длинные таблицы
-\usepackage{multirow,makecell,array}	% Улучшенное форматирование таблиц
+\usepackage{array,tabularx,tabulary,booktabs}	% Дополнительная работа с таблицами
+\usepackage{longtable}							% Длинные таблицы
+\usepackage{multirow,makecell}					% Улучшенное форматирование таблиц (слияние строк и т.п.)
 
 %%% Общее форматирование
 \usepackage[singlelinecheck=off,center]{caption}	% Многострочные подписи
 \usepackage{soul}									% Поддержка переносоустойчивых подчёркиваний и зачёркиваний
+%\usepackage{soulutf8}								% Аналогичные модификаторы начертания
 
 %%% Библиография %%%
-\usepackage{cite} % Красивые ссылки на литературу
+\usepackage{cite}				% Красивые ссылки на литературу (библиография)
+%\usepackage[superscript]{cite}	% Ссылки в верхних индексах
+%\usepackage[nocompress]{cite}
+\usepackage{csquotes}			% Еще инструменты для ссылок
+%\usepackage[backend=biber,bibencoding=utf8,sorting=ynt,maxcitenames=2,style=authoryear]{biblatex}
+%\addbibresource{bib1.bib}
+%\usepackage[style=authoryear,maxcitenames=2,backend=biber,sorting=nty]{biblatex}
 
 %%% Гиперссылки %%%
 \usepackage[linktocpage=true,plainpages=false,pdfpagelabels=false]{hyperref}
 
 %%% Изображения %%%
-\usepackage{graphicx} % Подключаем пакет работы с графикой
+\usepackage{graphicx}	% Подключаем пакет работы с графикой
+\usepackage{wrapfig}	% Обтекание рисунков текстом
 
 %%% Оглавление %%%
 \usepackage{tocloft}
+
+%%% Программирование %%%
+\usepackage{etoolbox}	% логические операторы
+
+%%% Рисование
+\usepackage{tikz}		% Работа с графикой
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+
+%%% Другие пакеты %%%
+\usepackage{lastpage}	% Узнать, сколько всего страниц в документе.
+\usepackage{multicol}	% Несколько колонок

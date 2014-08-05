@@ -1,8 +1,33 @@
+%%% Колонтитулы (см. packages.tex) %%%
+%\pagestyle{fancy}
+%\renewcommand{\headrulewidth}{0pt}	% Толщина линейки, отчеркивающей верхний колонтитул
+%\lfoot{Нижний левый}
+%\rfoot{Нижний правый}
+%\rhead{Верхний правый}
+%\chead{Верхний в центре}
+%\lhead{Верхний левый}
+%\cfoot{Нижний в центре}			% По умолчанию здесь номер страницы
+
+%%% Интерлиньяж %%%
+\onehalfspacing	% Интерлиньяж 1.5
+%\doublespacing	% Интерлиньяж 2
+%\singlespacing	% Интерлиньяж 1
+
 %%% Макет страницы %%%
 \geometry{a4paper,top=2cm,bottom=2cm,left=3cm,right=1cm}
 
 %%% Кодировки и шрифты %%%
 \renewcommand{\rmdefault}{ftm} % Включаем Times New Roman
+
+%%% Альтернативные шрифты (см. packages.tex) %%%
+%\defaultfontfeatures{Ligatures={TeX},Renderer=Basic}		% свойства шрифтов по умолчанию
+%\setmainfont[Ligatures={TeX,Historic}]{Times New Roman}	% основной шрифт документа
+%\setsansfont{Comic Sans MS}								% шрифт без засечек
+%\setmonofont{Courier New}
+%\renewcommand{\familydefault}{\sfdefault}					% Начертание шрифта
+
+%%% Номера формул %%%
+%\mathtoolsset{showonlyrefs=true}	% Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
 
 %%% Выравнивание и переносы %%%
 \sloppy					% Избавляемся от переполнений
@@ -16,16 +41,40 @@
 \makeatother
 
 %%% Изображения %%%
-\graphicspath{{images/}} % Пути к изображениям
+\graphicspath{{images/}}	% Пути к изображениям
+\setlength\fboxsep{3pt}		% Отступ рамки \fbox{} от рисунка
+\setlength\fboxrule{1pt}	% Толщина линий рамки \fbox{}
 
 %%% Цвета гиперссылок %%%
 \definecolor{linkcolor}{rgb}{0.9,0,0}
 \definecolor{citecolor}{rgb}{0,0.6,0}
 \definecolor{urlcolor}{rgb}{0,0,1}
-\hypersetup{
-    colorlinks, linkcolor={linkcolor},
-    citecolor={citecolor}, urlcolor={urlcolor}
+\hypersetup{				% Гиперссылки
+	unicode=true,			% русские буквы в раздела PDF
+	pdftitle={title},		% Заголовок
+	pdfauthor={author},		% Автор
+	pdfsubject={theme},		% Тема
+	pdfcreator={creator},	% Создатель
+	pdfproducer={producer},	% Производитель
+	pdfkeywords={k1} {k2},	% Ключевые слова
+    colorlinks=true,		% false: ссылки в рамках; true: цветные ссылки
+    linkcolor={linkcolor},	% внутренние ссылки
+    citecolor={citecolor},	% на библиографию
+    filecolor=magenta,		% на файлы
+    urlcolor={urlcolor}		% на URL
 }
 
 %%% Оглавление %%%
 \renewcommand{\cftchapdotsep}{\cftdotsep}
+
+%%% Теоремы %%%
+\theoremstyle{plain}		% Это стиль по умолчанию, его можно не переопределять.
+\newtheorem{theorem}{Теорема}[section]
+\newtheorem{proposition}[theorem]{Утверждение}
+ 
+\theoremstyle{definition}	% "Определение"
+\newtheorem{corollary}{Следствие}[theorem]
+\newtheorem{problem}{Задача}[section]
+ 
+\theoremstyle{remark}		% "Примечание"
+\newtheorem*{nonum}{Решение}
