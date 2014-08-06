@@ -1,12 +1,21 @@
 %%% Колонтитулы (см. packages.tex) %%%
-%\pagestyle{fancy}
-%\renewcommand{\headrulewidth}{0pt}	% Толщина линейки, отчеркивающей верхний колонтитул
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}	% Толщина линейки, отчеркивающей верхний колонтитул
 %\lfoot{Нижний левый}
 %\rfoot{Нижний правый}
 %\rhead{Верхний правый}
 %\chead{Верхний в центре}
 %\lhead{Верхний левый}
 %\cfoot{Нижний в центре}			% По умолчанию здесь номер страницы
+\lfoot{}
+\rfoot{}
+\rhead{}
+\chead{\normalsize\thepage}
+\lhead{}
+\cfoot{}
+
+%%% при использовании chapters - первая страница создается в plain pagestyle %%%
+\fancypagestyle{plain}{\pagestyle{fancy}}
 
 %%% Интерлиньяж %%%
 \onehalfspacing	% Интерлиньяж 1.5
