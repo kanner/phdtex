@@ -7,9 +7,38 @@
 %\includeonly{02-introduction,06-conclusion}
 
 %%% Заголовок %%%
-\author{some author}
-\title{some title}
+\author{ФАМИЛИЯ ИМЯ ОТЧЕСТВО автора}
+\title{НАЗВАНИЕ ДИССЕРТАЦИОННОЙ РАБОТЫ}
 \date{\today}
+
+\makeatletter
+\def\dissauthor{\@author}
+\def\disstitle{\@title}
+\def\dissdate{\@date}
+\makeatother
+
+\def\specnum{ХХ.ХХ.ХХ}
+\def\specname{<<Название специальности>>}
+\def\edudegree{кандидата каких-то там наук}
+\def\mentordegree{уч. степень, уч. звание}
+\def\mentorname{Фамилия И.О.}
+
+\def\dissyear{\the\year}
+\def\disscity{Город }
+\def\dissorg{НАЗВАНИЕ УЧРЕЖДЕНИЯ, В КОТОРОМ ВЫПОЛНЯЛАСЬ\par
+ДАННАЯ ДИССЕРТАЦИОННАЯ РАБОТА\par}
+\def\dissudk{УДК xxx.xxx}
+
+%%% выставим атрибуты pdf-документа - см. styles.tex %%%
+\hypersetup{
+	pdftitle={\disstitle},		% Заголовок
+	pdfauthor={\dissauthor},	% Автор
+	pdfsubject={\disstitle},	% Тема
+	pdfcreator={\dissauthor},	% Создатель
+	pdfproducer={\dissauthor},	% Производитель
+	% Ключевые слова
+	pdfkeywords={key1} {key2}
+}
 
 \begin{document}
 
