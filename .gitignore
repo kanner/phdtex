@@ -71,6 +71,7 @@
 
 # nomencl
 *.nlo
+*.nls
 
 # sagetex
 *.sagetex.sage
