@@ -13,26 +13,62 @@
 \chead{\normalsize\thepage}
 \lhead{}
 \cfoot{}
-
-%%% при использовании chapters - первая страница создается в plain pagestyle %%%
+% при использовании chapters - первая страница создается в plain pagestyle
 \fancypagestyle{plain}{\pagestyle{fancy}}
+
+
 
 %%% Интерлиньяж %%%
 \onehalfspacing	% Интерлиньяж 1.5
 %\doublespacing	% Интерлиньяж 2
 %\singlespacing	% Интерлиньяж 1
 
+
+
 %%% Макет страницы %%%
 \geometry{a4paper,top=20mm,bottom=20mm,left=25mm,right=10mm}
+% Абзацный отступ 5 знаков (5 пробелов ~ 2em)
+\parindent=2em
+
+% Заголовки от текста сверху и снизу - 3 интервала (по умолчанию)
+% Частично рабочие варианты:
+%	\usepackage{titlesec}
+%	\setlength{\parskip}{0.5cm}
+%	\titlespacing{\section}{0pt}{\parskip}{-\parskip}
+%	\titlespacing{\subsection}{0pt}{\parskip}{-\parskip}
+%	\titlespacing{\subsubsection}{0pt}{\parskip}{-\parskip}
 
 \usepackage{sectsty}
-\allsectionsfont{\centering}	% центрирование заголовков (должны быть без точки на конце и переносов)
+% центрирование заголовков
+\allsectionsfont{\centering}
+% запрет переносов (\hyphenation для всех)
+\allsectionsfont{\raggedright}
+
+% singlespacing в заголовках %
+% Необходимо использовать \begin{singlespace}...\end{singlespace} если заголовок длинный
+% Частично рабочие варианты:
+%	\pretocmd{\@chap}{\singlespacing}{}{}
+%	\apptocmd{\@chap}{\onehalfspacing}{}{}
+%
+%	\let\oldchap\chapter
+%	\renewcommand*{\chapter}[1]{\singlespace\oldchap{#1}\onehalfspacing}
+%
+%	\usepackage{titlesec}
+%	\titleformat{\chapter}
+%	{\singlespacing\normalfont\Huge\bfseries}{\thechapter}{1em}{}
+
+
 
 %%% список сокращений %%%
 \usepackage{nomencl}
-
 % Позволяет одновременно печатать условное обозначение в тексте документа и добавлять его в перечень
 \newcommand*{\nom}[2]{#1\nomenclature{#1}{#2}}
+% Перечень сокращений будет распечатываться по алфавиту вне зависимости от появления в тексте
+% Пример:
+%	\nom{Б}{Вторая буква алфавита}.
+%	А\nomenclature{А}{Первая буква алфавита}
+
+
 
 %%% Формат формул и ссылок на формулы %%%
 % ПРИМЕР:
@@ -42,12 +78,9 @@
 %
 %Формула \eqref{name}
 
-% Перечень сокращений будет распечатываться по алфавиту вне зависимости от появления в тексте
-% ПРИМЕР:
-%\nom{Б}{Вторая буква алфавита}.
-%А\nomenclature{А}{Первая буква алфавита}
 
-% Список литературы формируется в порядке возрастания - bib1, bib2, bib3,...
-% по ГОСТ НЕОБХОДИМО, чтобы источники на отличном от русского языке перечислялись ПОСЛЕ источников на русском
 
-% Приложения ДОЛЖНЫ быть перечислены в порядке их перечисления в тексте
+%%% Прочее: %%%
+%	- Список литературы формируется в порядке возрастания - bib1, bib2, bib3,...
+% 	- по ГОСТ НЕОБХОДИМО, чтобы источники на отличном от русского языке перечислялись ПОСЛЕ источников на русском
+%	- Приложения ДОЛЖНЫ быть перечислены в порядке их перечисления в тексте
