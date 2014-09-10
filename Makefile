@@ -17,3 +17,4 @@ $(document).pdf: $(document).tex $(PARTS)
 
 clean:
 	rm -f *.aux *.log *.ps *.lof *.lot *.out *.toc *.pdf *.blg *.bbl *.nls *.nlo *.ilg
+	rm -f contrib/*.aux parts/*.aux
