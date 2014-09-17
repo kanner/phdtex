@@ -4,7 +4,21 @@ BIBTEX=bibtex
 NOMENCL=makeindex
 
 document = dissertation
-PARTS =
+PARTS = contrib/contents.tex \
+		contrib/names.tex \
+		contrib/packages.tex \
+		contrib/stylesgost.tex \
+		contrib/styles.tex \
+		parts/appendix.tex \
+		parts/biblio.bib \
+		parts/lists.tex \
+		parts/references.tex \
+		01-title.tex \
+		02-introduction.tex \
+		03-part1.tex \
+		04-part2.tex \
+		05-part3.tex \
+		06-conclusion.tex
 
 all: $(document).pdf
 
