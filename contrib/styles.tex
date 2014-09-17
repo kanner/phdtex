@@ -57,3 +57,13 @@
  
 \theoremstyle{remark}		% "Примечание"
 \newtheorem*{nonum}{Решение}
+
+%%% Выделение текста %%%
+\newcommand\hly[1]{\colorbox{yellow!80}{\begin{varwidth}{\dimexpr\linewidth-2\fboxsep}#1\end{varwidth}}}
+\newcommand\hlg[1]{\colorbox{green!80}{\begin{varwidth}{\dimexpr\linewidth-2\fboxsep}#1\end{varwidth}}}
+
+% второй вариант
+%\newcommand\hl{\bgroup\markoverwith % 
+%	{\textcolor{yellow}{\rule[-.5ex]{2pt}{2.5ex}}}\ULon}
+% третий вариант
+%\newcommand*{\hl}[1]{\colorbox{yellow}{#1}}
