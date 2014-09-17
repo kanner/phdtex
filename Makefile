@@ -28,6 +28,7 @@ $(document).pdf: $(document).tex $(PARTS)
 	$(NOMENCL) $(document).nlo -s nomencl.ist -o $(document).nls
 	$(PDFLATEX) $(document).tex
 	$(PDFLATEX) $(document).tex
+	$(PDFLATEX) $(document).tex
 
 clean:
 	rm -f *.aux *.log *.ps *.lof *.lot *.out *.toc *.pdf *.blg *.bbl *.nls *.nlo *.ilg

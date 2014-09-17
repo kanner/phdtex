@@ -6,6 +6,24 @@
 
 %\includeonly{02-introduction,06-conclusion}
 
+%%% счетчики списка литературы, количества глав и приложений %%%
+\newtotcounter{bibnum}
+\newtotcounter{chapnum}
+\newtotcounter{appendnum}
+
+% сохраненный object %
+\def\oldcite{}
+\def\oldchap{}
+\def\oldappnd{}
+\let\oldcite=\bibcite
+\let\oldchap=\chapter
+\let\oldappnd=\chapter
+
+% object = object + увеличение счетчика %
+\def\bibcite{\stepcounter{bibnum}\oldcite}
+\def\realchapter{\stepcounter{chapnum}\oldchap}
+\def\appndchapter{\stepcounter{appendnum}\oldappnd}
+
 %%% Заголовок %%%
 \author{ФАМИЛИЯ ИМЯ ОТЧЕСТВО автора}
 \title{НАЗВАНИЕ ДИССЕРТАЦИОННОЙ РАБОТЫ}
