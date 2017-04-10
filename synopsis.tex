@@ -1,15 +1,18 @@
-\documentclass[a4paper,12pt]{report} % добавить leqno в [] для нумерации слева
+\documentclass[a5paper,10pt]{report} % добавить leqno в [] для нумерации слева
+%[a5paper,10pt,twoside]{report}
 
 \input{contrib/packages}		% Подключаемые пакеты
 \input{contrib/styles}			% Пользовательские стили
 \input{contrib/stylesgost.tex}	% Cтили ГОСТ Р 7.0.11-2011
 
+% для использования ссылок на страницы текста диссертации
+\usepackage{xr}
+\externaldocument{03-part1}
+\externaldocument{04-part2}
+\externaldocument{05-part3}
+\externaldocument{06-part4}
+
 \usepackage{contrib/tweaklist} % Подключаем пакет tweaklist.sty - формирование отступов в enumerate и itemize
-
-%\includeonly{01-title,contrib/contents,parts/intro,parts/references}
-
-% для проверки вхождения всех источников (+ см. ниже)
-%\usepackage{refcheck}
 
 % Сужаем литературу для сохранения места
 %\usepackage{etoolbox}
@@ -25,7 +28,7 @@
 	\setlength{\itemsep}{0mm}%              В  Разделитель элементов
 	\setlength{\labelsep}{.5em}%            Г  Расстояние между маркером и текстом (0,5 кегля)
 	\setlength{\labelwidth}{0mm}%           Г  Ширина маркера
-	\setlength{\listparindent}{1.5\parindent}% Г  2-й и последующие абзацные отступы
+	\setlength{\listparindent}{\parindent}% Г  2-й и последующие абзацные отступы
 	\setlength{\leftmargin}{0mm}%           Г  Отступ списка слева
 	\setlength{\rightmargin}{0mm}%          Г  Отступ списка справа
 	\setlength{\parsep}{0mm}%               В  Расстояние между элементами или абзацами
@@ -37,8 +40,9 @@
 % Копируем настройки для перечней верхнего уровня
 \renewcommand{\enumhooki}{\enumhook}
 \renewcommand{\itemhooki}{\enumhook}
-\renewcommand{\enumhookii}{\enumhook}
-\renewcommand{\itemhookii}{\enumhook}
+
+% \includeonly{{synopsis-parts/synopsis-title, parts/intro-syn,
+% synopsis-parts/synopsis-content, synopsis-parts/synopsis-results}
 
 %%% счетчики списка литературы, количества глав и приложений %%%
 \newtotcounter{bibnum}
@@ -73,15 +77,37 @@
 \def\specname{<<Название специальности>>}
 \def\edudegree{кандидата каких-то там наук}
 \def\mentordegree{уч. степень, уч. звание}
+\def\mentorcompany{Название компании, г. Город}
 \def\mentorname{Фамилия И. О.}
 \def\consultantdegree{уч. степень, уч. звание}
+\def\consultantcompany{Название компании, г. Город}
 \def\consultantname{Фамилия И. О.}
+\def\opponentonedegree{уч. степень, уч. звание}
+\def\opponentonecompany{Название компании, г. Город}
+\def\opponentonename{Фамилия И. О.}
+\def\opponenttwodegree{уч. степень, уч. звание}
+\def\opponenttwocompany{Название компании, г. Город}
+\def\opponenttwoname{Фамилия И. О.}
 
 \def\dissyear{\the\year}
 \def\disscity{Город }
-\def\dissorg{НАЗВАНИЕ УЧРЕЖДЕНИЯ, В КОТОРОМ ВЫПОЛНЯЛАСЬ\par
-ДАННАЯ ДИССЕРТАЦИОННАЯ РАБОТА\par}
+\def\dissorgsyn{<<Название учреждения, в котором выполнялась данная
+  диссертационная работа>>}
 \def\dissudk{УДК xxx.xxx}
+
+\def\councildate{<<\dots>> \dots \the\year~г.}
+\def\counciltime{\dots:00}
+\def\councilnum{Д xxx.xxx.xx}
+\def\councilplace{<<Организация, к которой относится диссертационный
+  совет>>}
+\def\counciladdress{Индекс, г.~Город, шоссе / улица / \dots,~д.xx}
+\def\libraryname{<<Организация, куда передается рукопись
+  диссертационной работы>>}
+\def\libraryaddress{Индекс, г.~Город, шоссе / улица / \dots,~д.xx}
+\def\councilwebsite{http://website.ru}
+\def\synopsissentdate{<<\dots>> \dots \the\year~года}
+\def\councilsecretarydegree{уч. степень, уч. звание}
+\def\councilsecretaryname{И.О.~Фамилия}
 
 %%% выставим атрибуты pdf-документа - см. styles.tex %%%
 \hypersetup{
@@ -91,36 +117,42 @@
 	pdfcreator={\dissauthor},	% Создатель
 	pdfproducer={\dissauthor},	% Производитель
 	% Ключевые слова
-	pdfkeywords={key1} {key2}
+	pdfkeywords={keyword1} {keyword2}
 }
 
-%%% Список сокращений - закомментировать, если не требуется %%%
-\makenomenclature
+%%% Особенности в шаблоне автореферата %%%
+% для раздельной библиографии
+\usepackage{bibtopic}
+\bibliographystyle{contrib/utf8gost71my}
+% другой размер бумаги
+\geometry{a5paper,top=15mm,bottom=20mm,left=15mm,right=12mm}
+% в автореферате номер страницы снизу
+\chead{}
+\cfoot{\normalsize\thepage}
+% нежирные заголовки
+\allsectionsfont{\normalfont\centering\raggedright}
 
 % для переопределения параметров geometry (для правильной работы fancyhdr)
 \makeatletter
 \newcommand{\resetHeadWidth}{\fancy@setoffs}
 \makeatother
 
+% дополнительно опишем формат подразделов
+\titleformat*{\subsection}{\centering\normalsize}
+
 \begin{document}
 
 \input{contrib/names}			% Переопределение именований
 
-\include{01-title}			% Титульный лист
-\resetHeadWidth
-\include{contrib/contents}		% Оглавление
-% Части Введения для возможности исключения в \includeonly (основной текст в introduction.tex)
-\include{parts/intro}		% Введение
-\include{03-part1}			% Глава 1
-\include{04-part2}			% Глава 2
-\include{05-part3}			% Глава 3
-\include{06-part4}			% Глава 4
-\include{07-conclusion}		% Заключение
-\include{parts/lists}			% Списки таблиц и изображений
-\include{parts/references}		% Список литературы
-\include{parts/appendix}		% Приложения
+\include{synopsis-parts/synopsis-title}			% Титульный лист автореферата с оборотом
 
-%%% раскомментировать для пометки не вошедших источников из bibtex баз
-%\nocite{*}
+\resetHeadWidth
+
+% Части Введения для возможности исключения в \includeonly (основной текст в introduction.tex)
+\input{parts/intro-syn}			% Введение
+
+\input{synopsis-parts/synopsis-content}			% Содержание работы по главам
+\input{synopsis-parts/synopsis-results}			% Основные результаты и выводы
+\input{synopsis-parts/synopsis-references.tex}	% Основные публикации по теме диссертации
 
 \end{document}

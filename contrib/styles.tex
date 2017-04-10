@@ -21,7 +21,7 @@
 
 %%% Библиография %%%
 \makeatletter
-\bibliographystyle{./contrib/utf8gost705u}	% Оформляем библиографию в соответствии с ГОСТ 7.0.5
+\bibliographystyle{./contrib/utf8gost71my}	% Оформляем библиографию в соответствии с ГОСТ 7.0.5
 \renewcommand{\@biblabel}[1]{#1.}	% Заменяем библиографию с квадратных скобок на точку:
 \makeatother
 
@@ -48,13 +48,17 @@
 
 %%% Теоремы %%%
 \theoremstyle{plain}		% Это стиль по умолчанию, его можно не переопределять.
-\newtheorem{theorem}{Теорема}[section]
-\newtheorem{proposition}[theorem]{Утверждение}
- 
+\newtheorem{theorem}{Теорема}
+\newtheorem{proposition}{Утверждение}
+\newtheorem{lemma}{Лемма}
+
 \theoremstyle{definition}	% "Определение"
-\newtheorem{corollary}{Следствие}[theorem]
+\newtheorem{corollary}{Следствие}
 \newtheorem{problem}{Задача}[section]
- 
+\newtheorem{condition}{Условие}
+\newtheorem{definition}{Определение}
+\newtheorem{axiom}{Аксиома}
+
 \theoremstyle{remark}		% "Примечание"
 \newtheorem*{nonum}{Решение}
 
@@ -62,8 +66,104 @@
 \newcommand\hly[1]{\colorbox{yellow!80}{\begin{varwidth}{\dimexpr\linewidth-2\fboxsep}#1\end{varwidth}}}
 \newcommand\hlg[1]{\colorbox{green!80}{\begin{varwidth}{\dimexpr\linewidth-2\fboxsep}#1\end{varwidth}}}
 
+%%% Цветные текст-боксы для таблиц и графиков %%%
+\newcommand\hlyy[1]{\fcolorbox{black!50}{yellow!25}{\begin{varwidth}{\dimexpr\linewidth-2\fboxsep}#1\end{varwidth}}}
+\newcommand\hlgg[1]{\fcolorbox{black!50}{green!25}{\begin{varwidth}{\dimexpr\linewidth-2\fboxsep}#1\end{varwidth}}}
+\newcommand\hlbrr[1]{\fcolorbox{black!50}{brown!25}{\begin{varwidth}{\dimexpr\linewidth-2\fboxsep}#1\end{varwidth}}}
+\newcommand\hlbll[1]{\fcolorbox{black!50}{black!25}{\begin{varwidth}{\dimexpr\linewidth-2\fboxsep}#1\end{varwidth}}}
+\newcommand\hlrr[1]{\fcolorbox{black!50}{red!25}{\begin{varwidth}{\dimexpr\linewidth-2\fboxsep}#1\end{varwidth}}}
+\newcommand\hlbluu[1]{\fcolorbox{black!50}{blue!25}{\begin{varwidth}{\dimexpr\linewidth-2\fboxsep}#1\end{varwidth}}}
+
+\newcommand\hlempty[1]{\fcolorbox{black!50}{white}{\begin{varwidth}{\dimexpr\linewidth-2\fboxsep}#1\end{varwidth}}}
+
+\newcommand\hlbr[1]{\colorbox{brown!80}{\begin{varwidth}{\dimexpr\linewidth-2\fboxsep}#1\end{varwidth}}}
+\newcommand\hlbl[1]{\colorbox{black!80}{\begin{varwidth}{\dimexpr\linewidth-2\fboxsep}#1\end{varwidth}}}
+\newcommand\hlr[1]{\colorbox{red!80}{\begin{varwidth}{\dimexpr\linewidth-2\fboxsep}#1\end{varwidth}}}
+\newcommand\hlblu[1]{\colorbox{blue!80}{\begin{varwidth}{\dimexpr\linewidth-2\fboxsep}#1\end{varwidth}}}
+
 % второй вариант
-%\newcommand\hl{\bgroup\markoverwith % 
+%\newcommand\hl{\bgroup\markoverwith %
 %	{\textcolor{yellow}{\rule[-.5ex]{2pt}{2.5ex}}}\ULon}
 % третий вариант
 %\newcommand*{\hl}[1]{\colorbox{yellow}{#1}}
+
+%%% Стили JavaScript %%%
+\lstdefinelanguage{JavaScript}{
+  keywords={break, case, catch, continue, debugger, default, delete, do, else, false, finally, for, function, if, in, instanceof, new, null, return, switch, this, throw, true, try, typeof, var, void, while, with},
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]',
+  morestring=[b]",
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywordstyle=\color{yellow}\bfseries,
+  identifierstyle=\color{black},
+  commentstyle=\color{green}\ttfamily,
+  stringstyle=\color{red}\ttfamily
+  sensitive=true,
+}
+
+%%% Стили XML %%%
+\lstdefinelanguage{xml}{
+	morekeywords={name,description,memory,unit,os,arch,machine,devices,emulator,hostdev, mode, type, managed, source, vendor, id, product, address, domain, bus, slot, function},
+	numbers=none,
+	frame=none,
+	belowskip=2pt,
+	caption=,
+}
+
+%%% Стили Bash %%%
+\lstdefinelanguage{bashhh}{
+	morekeywords={modprobe,echo},
+	deletekeywords={bind},
+	morecomment=[l]{\#},
+	numbers=none,
+	frame=none,
+	belowskip=2pt,
+	caption=,
+}
+
+%%% Цветовые схемы для выделения блоков кода %%%
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codemauve}{rgb}{0.58,0,0.82}
+\lstset{
+  columns=fixed,					% Делаем моноширинный шрифт
+  backgroundcolor=\color{white},	% Цвет фона, нужно подключить пакет color или xcolor
+  basicstyle=\small\sffamily,		% Размер и начертание
+  breakatwhitespace=false,			% Переносим строки только при наличии пробела
+  breaklines=true,					% Автоматически переносим строки
+  captionpos=b,						% Позиция заголовка вверху [t] или внизу [b]
+  commentstyle=\color{codegreen},	% Стиль для комментариев
+  deletekeywords={...},				% Удалить какие-нибудь ключевые слова из языка
+  escapeinside={\%*}{*)},			% Если вы хотите использовать LaTeX в вашем коде
+  extendedchars=true,				% Позволяем использовать не-ASCII символы
+%  extendedchars=\true,
+% inputencoding=utf8x,
+%  keepspaces = true,
+  frame=single,						% Добавляем рамку вокруг кода
+  keywordstyle=\color{blue},		% Стиль для ключевых слов
+%  language=C,						% Язык программирования должен выставляться в самом листинге
+%  language=JavaScript,
+  morekeywords={*,...},				% Пользовательские ключевые слова
+  numbers=left,						% Позиция номеров строк
+  numbersep=5pt,					% Как далеко номера строк находятся от кода
+  numberstyle=\tiny\color{codegray},% Стиль для номеров строк
+  rulecolor=\color{black},			% Если не установлено, то цвет рамки может меняться
+  showspaces=false,					% Показывать ли пробелы с помощью специальных отступов
+  showstringspaces=false,			% Показывать ли пробелы в строках
+  showtabs=false,					% Показывать ли знаки табуляции
+  stepnumber=1,						% Размер шага между номерами строк
+  stringstyle=\color{codemauve},	% Стиль для строковых литералов
+  tabsize=2,						% Размер табуляции
+  title=\lstname					% Показывать имя подключаемого файла
+}
+
+%%% для растягивания или игнорирования "Underfull \hbox"
+%\setlength{\emergencystretch}{1pt}
+%\sloppy
+%\hyphenation{сло-во} % глобальные правила переноса (или запрета переноса)
+%\hfuzz=2.5pt % 0.1pt -- стандартный допустимый "Overfull"
+%\tolerance=400 % 200 -- стандартный порог разреженности
+
+%%% использовать \slash -- для переноса слов, разделенных "\"?

@@ -1,6 +1,6 @@
 %%% Поля и разметка страницы %%%
 \usepackage{lscape}		% Для включения альбомных страниц
-\usepackage{geometry}	% Для последующего задания полей
+\usepackage[headheight=17pt]{geometry}	% Для последующего задания полей (для устранения "\headheight is too small")
 
 %%% Кодировки и шрифты %%%
 \usepackage{cmap}						% Улучшенный поиск русских слов в полученном pdf-файле
@@ -8,7 +8,7 @@
 \usepackage[utf8]{inputenc}				% Кодировка utf8 (исходного текста)
 \usepackage[english, russian]{babel}	% Языки: русский, английский (локализация и переносы)
 \usepackage{pscyr}						% Красивые русские шрифты
-\usepackage{extsizes}					% Возможность сделать 14-й шрифт
+\usepackage{extsizes}					% Возможность сделать 14-й шрифт (не перенесено в documentclass extreport из-за неподдерживаемости в secsty)
 
 %%% Альтернативные шрифты %%%
 %\usepackage[english, russian]{babel}
@@ -41,7 +41,7 @@
 
 %%% Общее форматирование
 \usepackage[singlelinecheck=off,center]{caption}	% Многострочные подписи
-\usepackage{soul}									% Поддержка переносоустойчивых подчёркиваний и зачёркиваний
+\usepackage{soul}									% Поддержка переносоустойчивых подчеркиваний и зачеркиваний
 %\usepackage{soulutf8}								% Аналогичные модификаторы начертания
 
 %%% Библиография %%%
@@ -70,15 +70,27 @@
 \usepackage{tikz}		% Работа с графикой
 \usepackage{pgfplots}
 \usepackage{pgfplotstable}
+\usetikzlibrary{positioning,shapes,shadows,arrows,intersections,patterns}
+\pgfplotsset{width=7cm,compat=1.10}
+\usepgfplotslibrary{fillbetween}
 
 %%% Другие пакеты %%%
 \usepackage{lastpage}	% Узнать, сколько всего страниц в документе.
 \usepackage{multicol}	% Несколько колонок
 \usepackage{totcount}	% Счетчики для глав, приложений и т.д.
+\usepackage{listings}	% Для блоков кода
 
 %%% Выделение текста %%%
 \usepackage{varwidth}
-%\usepackage{xcolor}
+\usepackage{xcolor}
 \usepackage{lipsum}
 % второй вариант
 %\usepackage[normalem]{ulem}
+
+%%% Опционально %%%
+%\usepackage{savetrees}			% ужимание текста
+%\usepackage[print]{booklet}	% печать брошюрой (не тестировалось)
+
+%\usepackage{lmodern} % устранение "Font shape undefined" [http://ctan.org/pkg/lm, http://www.tex.ac.uk/cgi-bin/texfaq2html?label=fontsize]
+
+\usepackage{footmisc}

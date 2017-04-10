@@ -2,7 +2,7 @@
 \renewcommand{\abstractname}{Аннотация}
 \renewcommand{\alsoname}{см. также}
 \renewcommand{\appendixname}{Приложение}
-\renewcommand{\bibname}{Литература}
+\renewcommand{\bibname}{Список использованных источников}
 \renewcommand{\ccname}{исх.}
 \renewcommand{\chaptername}{Глава}
 \renewcommand{\contentsname}{Содержание}
@@ -17,6 +17,7 @@
 \renewcommand{\refname}{Список литературы}
 \renewcommand{\seename}{см.}
 \renewcommand{\tablename}{Таблица}
+\renewcommand{\lstlistingname}{Листинг}
 
 % Изменение заголовка перечня
 \renewcommand{\nomname}{Перечень сокращений и условных обозначений}
@@ -35,5 +36,16 @@
 \newcommand*{\hm}[1]{#1\nobreak\discretionary{}
 {\hbox{$\mathsurround=0pt #1$}}{}}
 
+%%% Сокращения %%%
+\newcommand*{\linux}{GNU/Linux}
+\newcommand*{\linuxkernel}{Linux}
+
 %%% Свои команды %%%
 %\DeclareMathOperator{\sgn}{\mathop{sgn}}
+\newcommand*{\nbline}{\\*\indent}
+\newcommand{\tab}[1]{\hspace{.1\textwidth}\rlap{#1}}
+\newcommand*{\ti}[1]{\text{\textit{#1}}}
+
+\newcounter{rowcount}
+\setcounter{rowcount}{0}
+\newcommand\rownumber{\stepcounter{rowcount}\arabic{rowcount}.}

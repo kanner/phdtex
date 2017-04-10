@@ -1,8 +1,102 @@
 % !TEX root = ../dissertation.tex
 
 \appendix
-\appndchapter{Название первого приложения} \label{AppendixA}
 
-Текст приложения
+% вернем формат для описания слова "Приложение"
+\titleformat{\chapter}{\centering\bf}{\chaptertitlename\
+  \thechapter.}{10pt}{\bf}
+
+%\sectionformat{\chapter}[display]{
+%  label=\chaptertitlename\ \thechapter,
+%  labelsep=20pt,
+%}
+
+% кириллические буквы для обозначения приложений
+\renewcommand\thechapter{\Asbuk{chapter}}
+
+% добавление в TOC слова "Приложение"
+\addtocontents{toc}{\def\protect\cftchappresnum{\chaptertitlename\
+    \thechapter}
+  \setlength{\cftchapnumwidth}{\widthof{\cftchapfont\appendixname~Ш\cftchapaftersnum}}
+}
+
+
+\appendix
+\renewcommand{\thechapter}{\Asbuk{chapter}}
+
+\begin{singlespace}
+  \appndchapter{Название первого приложения} \label{AppendixA}
+\end{singlespace}
+
+Текст приложения \dots{}
+
+Какой-нибудь длинный листинг, который не был помещен в основной текст.
+
+\begin{lstlisting}[language=C,label=listing2,caption=Пример длинного
+  листинга на языке C (\textbf{hello-world.c})]
+  #include <stdio.h>
+
+  int main(void) {
+    printf("Hello world!\n");
+    return 0;
+  }
+\end{lstlisting}
+
+
+
+\begin{singlespace}
+  \appndchapter{Название второго приложения} \label{AppendixB}
+\end{singlespace}
+
+Какая-нибудь длинная таблица (см. таблицу \ref{table1}) с полными
+результатами экспериментальных исследований или чем-то еще.
+
+\setcounter{rowcount}{0}
+\captionsetup{belowskip=-10pt}
+\begin{longtable}{|c|c|c|}
+  \hline
+
+  \textbf{№} & \begin{tabular}{@{}l@{}}\textbf{Текст1} \\
+                 \textbf{Текст2}\end{tabular} & Текст3 \\
+
+  \hline
+  \endfirsthead
+
+  \multicolumn{3}{|c|}{\small (продолжение таблицы)} \\
+  \hline
+
+  \textbf{№} & \begin{tabular}{@{}l@{}}\textbf{Текст1} \\
+                 \textbf{Текст2}\end{tabular} & Текст3 \\
+
+  \hline
+  \endhead %\hline
+
+  \multicolumn{3}{|r|}{\small (продолжение следует)} \\ \hline
+
+  \endfoot %\hline
+  \endlastfoot
+
+  \rownumber & \cellcolor{green!25}Текст & \cellcolor{red!25}Текст \\
+  \hline
+
+  \rownumber & \cellcolor{yellow!25}Текст & \cellcolor{green!25}Текст \\
+  \hline
+
+  \rownumber & \cellcolor{red!25}Текст & \cellcolor{yellow!25}Текст \\
+  \hline
+
+  \caption{Подпись таблицы} \label{table1}
+
+\end{longtable}
+
+
+
+\begin{singlespace}
+  \appndchapter{Документы, подтверждающие внедрение результатов
+    диссертации} \label{AppendixC}
+\end{singlespace}
+
+%%\includepdf{./images/regcert.pdf}
+%\includegraphics[width=0.95\textwidth,height=0.95\textheight,keepaspectratio]{./images/regcert.pdf}
 
 %\clearpage

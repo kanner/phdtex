@@ -1,10 +1,32 @@
 % !TEX root = dissertation.tex
 
-\realchapter{Название главы 3} \label{chapt3}
+\begin{singlespace}
+  \realchapter{Название главы 3} \label{chapt3}
+\end{singlespace}
 
 \section{Название раздела 3.1} \label{sect3_1}
 
+Какой-нибудь короткий листинг, см. листинг \ref{listing1} (ссылка на
+длинный листинг в Приложении~\ref{AppendixA}) и другие материалы по
+разработанному (внедренному куда-нибудь) на базе полученных ранее
+научных результатов.
+
+\begin{lstlisting}[language=C,label=listing1,caption=Пример короткого
+  листинга на языке C (\textbf{blank.c})]
+  int main(void) {
+    return 0;
+  }
+\end{lstlisting}
+
 %\newpage
 %===============================================================================
+
+\section{Выводы} \label{sect3_2}
+
+\begin{enumerate}
+\item Вывод 1.
+\item Вывод 2.
+\item Вывод 3.
+\end{enumerate}
 
 %\clearpage

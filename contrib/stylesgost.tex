@@ -39,10 +39,9 @@
 %	\titlespacing{\subsubsection}{0pt}{\parskip}{-\parskip}
 
 \usepackage{sectsty}
-% центрирование заголовков
-\allsectionsfont{\centering}
-% запрет переносов (\hyphenation для всех)
-\allsectionsfont{\raggedright}
+% центрирование заголовков + запрет переносов (\hyphenation для всех)
+%\allsectionsfont{\centering\raggedright}
+\allsectionsfont{\centering\normalsize\raggedright}
 
 % singlespacing в заголовках %
 % Необходимо использовать \begin{singlespace}...\end{singlespace} если заголовок длинный
@@ -57,7 +56,28 @@
 %	\titleformat{\chapter}
 %	{\singlespacing\normalfont\Huge\bfseries}{\thechapter}{1em}{}
 
+% центрирование глав + отступы после глав, добавление "." после номера разделов
+%\sectionfont{\normalsize}
+\usepackage{titlesec}
+%\titleformat{\chapter}{\centering\normalsize\bf}{\thechapter.}{0pt}{\normalsize\bf}
+%\titleformat{\chapter}{\centering\bf}{\thechapter.}{10pt}{\bf}
+\titleformat{\chapter}{\centering\bf}{\thechapter.}{10pt}{\bf}
+\titlespacing*{\chapter}{0pt}{*0}{2ex}
+\titlelabel{\thetitle.\quad}
 
+% Изменение размера заголовка Содержания
+%\renewcommand{\cfttoctitlefont}{\hfill\Large\bfseries}
+\renewcommand{\cfttoctitlefont}{\Large\bfseries}
+% Точка после номеров разделов
+\renewcommand{\cftchapaftersnum}{.}
+\renewcommand{\cftsecaftersnum}{.}
+\renewcommand{\cftsubsecaftersnum}{.}
+
+% Изменение размера Списка рисунков и таблиц
+\renewcommand\cftloftitlefont{\hspace*{\fill}\normalsize\bf}
+\renewcommand{\cftafterloftitle}{\hspace*{\fill}}
+\renewcommand\cftlottitlefont{\hspace*{\fill}\normalsize\bf}
+\renewcommand{\cftafterlottitle}{\hspace*{\fill}}
 
 %%% список сокращений %%%
 \usepackage{nomencl}
@@ -67,6 +87,7 @@
 % Пример:
 %	\nom{Б}{Вторая буква алфавита}.
 %	А\nomenclature{А}{Первая буква алфавита}
+\setlength\nomlabelwidth{5cm}
 
 
 
@@ -84,3 +105,42 @@
 %	- Список литературы формируется в порядке возрастания - bib1, bib2, bib3,...
 % 	- по ГОСТ НЕОБХОДИМО, чтобы источники на отличном от русского языке перечислялись ПОСЛЕ источников на русском
 %	- Приложения ДОЛЖНЫ быть перечислены в порядке их перечисления в тексте
+
+\def\labelitemi{--}
+
+
+%%% отключение отступов у списков %%%
+\usepackage{paralist}
+\let\itemize\compactitem
+\let\enditemize\endcompactitem
+\let\enumerate\compactenum
+\let\endenumerate\endcompactenum
+\let\description\compactdesc
+\let\enddescription\endcompactdesc
+%\pltopsep=\medskipamount
+%\plitemsep=1pt
+%\plparsep=1pt
+
+% некорректно работает с synopsis.tex
+%\usepackage{enumitem}
+%%\setlist[enumerate]{nosep}
+%%\setlist[itemize]{nosep}
+%%\setlist[description]{nosep}
+%%\setlist{nolistsep}
+%\setlist{nosep}
+
+
+%%% подписи без ":" %%%
+%%\DeclareCaptionLabelFormat{dash}{#1--#2}
+%%\captionsetup[figure]{labelformat=dash}
+%\captionsetup[figure]{labelsep=endash}
+%\captionsetup[table]{labelsep=endash}
+\captionsetup{labelsep=endash}
+
+% special enumerate list with indentation, similar to enumitem-package
+% "\setenumerate{listparindent=\parindent}"
+\newenvironment{myenumerate}{%
+  \edef\backupindent{\the\parindent}%
+  \enumerate%
+  \setlength{\parindent}{\backupindent}%
+}{\endenumerate}

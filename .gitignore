@@ -13,6 +13,7 @@
 # *.ps
 # *.eps
 *.pdf
+!images/*.pdf
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl
@@ -88,3 +89,6 @@ sympy-plots-for-*.tex/
 
 # xindy
 *.xdy
+
+bbl-sorter.pl.lgpl
+bbl-sorter.pl.pipe

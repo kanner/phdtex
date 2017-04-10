@@ -1,0 +1,48 @@
+=====================
+Current problems list
+=====================
+Possible Latex errors:
+======================
+1. http://en.wikibooks.org/wiki/LaTeX/Errors_and_Warnings#Underfull_hbox
+2. google - "latex Underfull \hbox"
+3. "fancyhdr warning: \headheight is too small (14.0 pt): make it at least 17.0 pt"
+   * \usepackage[headheight=17pt]{geometry}
+4. "Font shape undefined"
+   * %\usepackage{lmodern} % смотри http://ctan.org/pkg/lm, [http://www.tex.ac.uk/cgi-bin/texfaq2html?label=fontsize]
+   * ошибки "LaTeX font warning: Font shape `PD1/faq/m/n' undefined, using ... pdf/m/n ... instead on input line 3"
+5. "Underfull \hbox (badness 10000) in paragraph at lines ... []\T2A/ftm/m/n//14.4 ..."
+   * из-за \\? -- добавить к тексту\\ а не на отдельной строке?
+   * использовать \par\nobreak\vspace{\baselineskip}?
+6. "Оverfull \hbox ..."
+7. Command \textnumero invalid in math mode on input line 501
+8. LaTeX Warning: `!h' float specifier changed to `!ht'. (grub1-2)
+
+============================================
+PHD info and requirements (russian specific)
+============================================
+Основное:
+=========
+противоречие -> актуальность (по возможности словами из паспорта) -> название (12 слов, словами из паспорта) -> цели, задачи -> новизна -> выводы по каждой главе
+
+Обоснование утверждений:
+========================
+формального обоснования не требуется, но должно быть использовано методологическое обоснование (желательно математическое)
+
+Список литературы:
+==================
+* 3 статьи ВАК (+ 1 Scopus/WoS?)
+* 75-80, лучше 100 источников
+* интернет ссылки ~ не более 10%
+* ~30% иностранных источников
+
+Объем:
+======
+140-150стр. (остальное в приложения)
+
+Оформление по ГОСТ
+==================
+* http://narfu.ru/agtu/www.agtu.ru/fad08f5ab5ca9486942a52596ba6582elit.html#11
+* библиографический список -- http://www.аспирантура.рф/bibliography
+* google - "список литературы диссертации пример"
+* описание библиографических ссылок на разные типы -- http://www.ispras.ru/ru/programming/rules.php
+

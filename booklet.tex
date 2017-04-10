@@ -1,0 +1,11 @@
+\documentclass[a4paper,10pt]{article}
+\pagestyle{plain}
+\usepackage{pdfpages}
+\usepackage[a4paper,nohead,includefoot,mag=1000]{geometry}
+%\geometry{a4paper,top=0mm,bottom=0mm,left=0mm,right=0mm}
+
+% печатать с двух сторон (по длинной стороне)
+\begin{document}
+\includepdf[pages={1-2},nup=1x2,landscape,signature=4]{synopsis.pdf}
+\includepdf[pages={3-},nup=1x2,landscape,signature=20]{synopsis.pdf}
+\end{document}

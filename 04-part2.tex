@@ -1,10 +1,111 @@
 % !TEX root = dissertation.tex
 
-\realchapter{Название главы 2} \label{chapt2}
+\begin{singlespace}
+  \realchapter{Название главы 2} \label{chapt2}
+\end{singlespace}
 
 \section{Название раздела 2.1} \label{sect2_1}
 
+Разные формулы:
+
+Индекс -- $t_i$.
+
+Составной индекс -- $t_{i+1}$.
+
+Верхний и верхний составной индексы -- $t^i$, $t^{i+1}$.
+
+Различные математические символы: $=$ $\leq$ $\geq$ $\neq$ $\subseteq$
+$\cup$ $\cap$ $\rightarrow$ $\in$ $\emptyset$ $\forall$ $\sin$ $\cos$
+$\tg$ $\ctg$ $\ln$ $\text{текст в math mode}$ и так далее.
+
+Скобки с автоувеличением: $\left(\frac{a}{b}\right)$,
+$\left\{A,B\right\}$,
+
+$\alpha$, $\Phi$, $\epsilon$, $\kappa$ \dots{}
+
+Диакритические знаки: $\bar x = 1$, $\overline{xy} = 1$,
+$\tilde x = 1$, $\widetilde{xy} = 1$
+
+Выключная формула:
+\[
+  a + b = c
+\]
+
+Нумерованная выключная формула \refeq{eq1}:
+\begin{equation}\label{eq1}
+  a + b = c
+\end{equation}
+
+Интеграл: $\int_0^1 x = 1/2$
+
+Умножение: $2 \times 2 = 4$, $2^2 = 4$
+
+Дроби: $\frac{5}{6}=\frac{1}{1+\frac{1}{5}}$
+
+Формула в несколько строк:
+\begin{multline}
+  1 + 2 + 3 \dots + \\ + 50 + 51 + 52 + \dots + \\ + 99 + 100 = 5050
+\end{multline}
+
+Система уравнений:
+\[\left\{
+    \begin{aligned}
+      x+1=y \\
+      y=x-1
+    \end{aligned}
+  \right.
+\]
+
+Вариативность:
+\[
+  |x| = \begin{cases}
+    x, &\text{если \dots} \\
+    x+1, &\text{иначе}
+  \end{cases}
+\]
+
+Матрицы:
+\[
+  \begin{pmatrix}
+    a_{11} & a_{12} & a_{13} \\
+    \dots
+  \end{pmatrix}
+\]
+
+И так далее.
+
+\begin{definition} \label{definition1} Текст определения.
+\end{definition}
+
+\begin{proposition} \label{proposition1} Текст утверждения.
+\end{proposition}
+
+\begin{lemma} \label{lemma1} Текст леммы.
+\end{lemma}
+
+\begin{theorem}[Название теоремы] \label{theorem1} Текст теоремы.
+\end{theorem}
+
+\begin{proof}
+  Доказательство \dots{}
+\end{proof}
+
+\begin{corollary} \label{corollary1} Текст следствия.
+\end{corollary}
+
+% этот label используется для простановки номеров страниц в Положениях
+% из введения
+Конец раздела.\label{sect2_1-eof}
+
 %\newpage
 %===============================================================================
+
+\section{Выводы} \label{sect2_2}
+
+\begin{enumerate}
+\item Вывод 1.
+\item Вывод 2.
+\item Вывод 3.
+\end{enumerate}
 
 %\clearpage
