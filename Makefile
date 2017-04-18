@@ -61,7 +61,7 @@ $(document): $(document).tex $(PARTS)
 	$(PDFLATEX) $(document).tex
 	$(BIBTEX) $(document-bib)
 	$(BIBTEXHELPER)
-	$(NOMENCL) $(document).nlo -s nomencl.ist -o $(document).nls
+	$(NOMENCL) $(document-bib).nlo -s nomencl.ist -o $(document-bib).nls
 	$(PDFLATEX) $(document).tex
 	# some elements (bib, nom) could not be build
 	$(PDFLATEX) $(document).tex
@@ -76,7 +76,7 @@ $(synopsis): $(synopsis).tex $(PARTS_SYNOPSIS)
 	# some elements (bib) could not be build
 	$(PDFLATEX) $(synopsis).tex
 
-$(booklet): $(booklet).tex
+$(booklet): $(synopsis) $(booklet).tex
 	$(PDFLATEX) $(booklet).tex
 
 spell: $(document).tex $(synopsis).tex $(PARTS) $(PARTS_SYNOPSIS)

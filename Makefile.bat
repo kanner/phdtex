@@ -19,7 +19,7 @@ set booklet=%path%\booklet
 %texlive_bin%\pdflatex.exe %dissertation%.tex || goto :error
 %texlive_bin%\bibtex.exe %dissertation-bib% || goto :error
 %perl_bin% %path%\contrib\bbl-sorter.pl || goto :error
-%texlive_bin%\makeindex.exe %dissertation%.nlo -s nomencl.ist -o %dissertation%.nls || goto :error
+%texlive_bin%\makeindex.exe %dissertation-bib%.nlo -s nomencl.ist -o %dissertation-bib%.nls || goto :error
 %texlive_bin%\pdflatex.exe %dissertation%.tex || goto :error
 :: some elements (bib, nom) could not be build
 %texlive_bin%\pdflatex.exe %dissertation%.tex || goto :error
