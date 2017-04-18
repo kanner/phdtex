@@ -1,11 +1,17 @@
-\documentclass[a5paper,10pt]{report} % добавить leqno в [] для нумерации слева
-%[a5paper,10pt,twoside]{report}
+\documentclass[a5paper,10pt]{report}
+% добавить leqno в [] для нумерации объектов слева
+%\documentclass[a5paper,10pt,twoside]{report}
 
-\IfFileExists{./template/contrib/styles.tex}{\def\template{./template}}{\def\template{./}}
+\IfFileExists{./template/contrib/styles.tex}{\def\template{./template}}{\def\template{.}}
 
-\input{\template/contrib/packages}		% Подключаемые пакеты
-\input{\template/contrib/styles}			% Пользовательские стили
-\input{\template/contrib/stylesgost.tex}	% Cтили ГОСТ Р 7.0.11-2011
+% подключаемые пакеты, стили (в т.ч. ГОСТ Р 7.0.11-2011)
+\input{\template/contrib/packages}
+\input{\template/contrib/styles}
+\input{\template/contrib/stylesgost.tex}
+
+% \includeonly{\template/synopsis-parts/synopsis-title,
+% parts/intro-syn, synopsis-parts/synopsis-content,
+% synopsis-parts/synopsis-results}
 
 % для использования ссылок на страницы текста диссертации
 \usepackage{xr}
@@ -14,107 +20,38 @@
 \externaldocument{05-part3}
 \externaldocument{06-part4}
 
-\usepackage{\template/contrib/tweaklist} % Подключаем пакет tweaklist.sty - формирование отступов в enumerate и itemize
-
-% Сужаем литературу для сохранения места
-%\usepackage{etoolbox}
-\patchcmd\thebibliography
-{\labelsep}
-{\labelsep\itemsep=0pt\parsep=0pt\setlength{\leftmargin}{15pt}\relax}
-{}
-{\typeout{Couldn't patch the command}}
-
-% Переопределяем общие установки для нумерованных перечней - пакет tweaklist.sty
-\renewcommand{\enumhook}{
-	\setlength{\itemindent}{1.7\parindent}%    Г  1-й абзацный отступ
-	\setlength{\itemsep}{0mm}%              В  Разделитель элементов
-	\setlength{\labelsep}{.5em}%            Г  Расстояние между маркером и текстом (0,5 кегля)
-	\setlength{\labelwidth}{0mm}%           Г  Ширина маркера
-	\setlength{\listparindent}{\parindent}% Г  2-й и последующие абзацные отступы
-	\setlength{\leftmargin}{0mm}%           Г  Отступ списка слева
-	\setlength{\rightmargin}{0mm}%          Г  Отступ списка справа
-	\setlength{\parsep}{0mm}%               В  Расстояние между элементами или абзацами
-	\setlength{\parskip}{\parskip}%         В  Отступ над вложенным списком
-	\setlength{\partopsep}{0mm}%            В  Отступ списка
-	\setlength{\topsep}{0mm}%               В  Отступ вложенного списка
-}
-
-% Копируем настройки для перечней верхнего уровня
-\renewcommand{\enumhooki}{\enumhook}
-\renewcommand{\itemhooki}{\enumhook}
-
-% \includeonly{{synopsis-parts/synopsis-title, parts/intro-syn,
-% synopsis-parts/synopsis-content, synopsis-parts/synopsis-results}
-
-%%% счетчики списка литературы, количества глав и приложений %%%
-\newtotcounter{bibnum}
-\newtotcounter{chapnum}
-\newtotcounter{appendnum}
-
-% сохраненный object %
-\def\oldcite{}
-\def\oldchap{}
-\def\oldappnd{}
-\let\oldcite=\bibcite
-\let\oldchap=\chapter
-\let\oldappnd=\chapter
-
-% object = object + увеличение счетчика %
-\def\bibcite{\stepcounter{bibnum}\oldcite}
-\def\realchapter{\stepcounter{chapnum}\oldchap}
-\def\appndchapter{\stepcounter{appendnum}\oldappnd}
-
-\input{00-info.tex}
-\date{\today}
-\makeatletter
-\def\dissauthor{\@author}
-\def\disstitle{\@title}
-\def\dissdate{\@date}
-\makeatother
-\def\dissyear{\the\year}
-
-%%% выставим атрибуты pdf-документа - см. styles.tex %%%
-\hypersetup{
-	pdftitle={\disstitle},		% Заголовок
-	pdfauthor={\dissauthor},	% Автор
-	pdfsubject={\disstitle},	% Тема
-	pdfcreator={\dissauthor},	% Создатель
-	pdfproducer={\dissauthor},	% Производитель
-}
-
-%%% Особенности в шаблоне автореферата %%%
-% для раздельной библиографии
+% раздельная библиография в автореферате [переопределяет styles.tex!]
 \usepackage{bibtopic}
 \bibliographystyle{\template/contrib/utf8gost71my}
-% другой размер бумаги
+
+% другой размер бумаги для автореферата (A5)
 \geometry{a5paper,top=15mm,bottom=20mm,left=15mm,right=12mm}
-% в автореферате номер страницы снизу
+
+% номер страницы в автореферате снизу
 \chead{}
 \cfoot{\normalsize\thepage}
-% нежирные заголовки
+
+% сделаем нежирные заголовки в автореферате
 \allsectionsfont{\normalfont\centering\raggedright}
 
-% для переопределения параметров geometry (для правильной работы fancyhdr)
-\makeatletter
-\newcommand{\resetHeadWidth}{\fancy@setoffs}
-\makeatother
-
-% дополнительно опишем формат подразделов
+% другой формат подразделов автореферата
 \titleformat*{\subsection}{\centering\normalsize}
 
 \begin{document}
 
-\input{\template/contrib/names}			% Переопределение именований
+% переопределение именований
+\input{\template/contrib/names}
 
-\include{\template/synopsis-parts/synopsis-title}			% Титульный лист автореферата с оборотом
-
+% титульный лист автореферата с оборотом
+\include{\template/synopsis-parts/synopsis-title}
 \resetHeadWidth
 
-% Части Введения для возможности исключения в \includeonly (основной текст в introduction.tex)
-\input{parts/intro-syn}			% Введение
-
-\input{synopsis-parts/synopsis-content}			% Содержание работы по главам
-\input{synopsis-parts/synopsis-results}			% Основные результаты и выводы
-\input{\template/synopsis-parts/synopsis-references.tex}	% Основные публикации по теме диссертации
+% текст введения находится в introduction.tex
+\input{parts/intro-syn}
+% содержание работы по главам, основные результаты и выводы
+\input{synopsis-parts/synopsis-content}
+\input{synopsis-parts/synopsis-results}
+% основные публикации по теме диссертации
+\input{\template/synopsis-parts/synopsis-references.tex}
 
 \end{document}

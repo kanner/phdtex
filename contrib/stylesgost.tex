@@ -144,3 +144,96 @@
   \enumerate%
   \setlength{\parindent}{\backupindent}%
 }{\endenumerate}
+
+
+%%% ниже перенесенные стили из dissertation.tex/synopsis.tex
+
+% сужаем литературу для сохранения места
+%\usepackage{etoolbox}
+\patchcmd\thebibliography
+{\labelsep}
+{\labelsep\itemsep=0pt\parsep=0pt\setlength{\leftmargin}{15pt}\relax}
+{}
+{\typeout{Couldn't patch the command}}
+
+% для формирование отступов в enumerate и itemize (ниже)
+\usepackage{\template/contrib/tweaklist}
+
+% переопределяем установки для нумерованных перечней
+\renewcommand{\enumhook}{
+	% 1-й абзацный отступ
+	\setlength{\itemindent}{1.7\parindent}
+	% разделитель элементов
+	\setlength{\itemsep}{0mm}
+	% расстояние между маркером и текстом (0,5 кегля)
+	\setlength{\labelsep}{.5em}
+	% ширина маркера
+	\setlength{\labelwidth}{0mm}
+	% 2-й и последующие абзацные отступы
+	\setlength{\listparindent}{1.5\parindent}
+	% отступ списка слева
+	\setlength{\leftmargin}{0mm}
+	% отступ списка справа
+	\setlength{\rightmargin}{0mm}
+	% расстояние между элементами или абзацами
+	\setlength{\parsep}{0mm}
+	% отступ над вложенным списком
+	\setlength{\parskip}{\parskip}
+	% отступ списка
+	\setlength{\partopsep}{0mm}
+	% отступ вложенного списка
+	\setlength{\topsep}{0mm}
+}
+
+% копируем настройки для перечней разного уровня
+\renewcommand{\enumhooki}{\enumhook}
+\renewcommand{\itemhooki}{\enumhook}
+\renewcommand{\enumhookii}{\enumhook}
+\renewcommand{\itemhookii}{\enumhook}
+
+% введем счетчики списка литературы, # глав и приложений [deprecated!]
+\newtotcounter{bibnum}
+\newtotcounter{chapnum}
+\newtotcounter{appendnum}
+% сохраненный object
+\def\oldcite{}
+\def\oldchap{}
+\def\oldappnd{}
+\let\oldcite=\bibcite
+\let\oldchap=\chapter
+\let\oldappnd=\chapter
+% object = object + увеличение счетчика %
+\def\bibcite{\stepcounter{bibnum}\oldcite}
+\def\realchapter{\stepcounter{chapnum}\oldchap}
+\def\appndchapter{\stepcounter{appendnum}\oldappnd}
+
+% добавим файл с информацией по работе, автору и т.д.
+\input{00-info.tex}
+
+% неизменяемые общие данные
+\date{\today}
+\makeatletter
+\def\dissauthor{\@author}
+\def\disstitle{\@title}
+\def\dissdate{\@date}
+\makeatother
+\def\dissyear{\the\year}
+
+% выставим атрибуты pdf-документа
+\hypersetup{
+	% заголовок
+	pdftitle={\disstitle},
+	% автор
+	pdfauthor={\dissauthor},
+	% тема
+	pdfsubject={\disstitle},
+	% создатель
+	pdfcreator={\dissauthor},
+	% производитель
+	pdfproducer={\dissauthor},
+}
+
+% для переопределения параметров geometry (для правильной работы fancyhdr)
+\makeatletter
+\newcommand{\resetHeadWidth}{\fancy@setoffs}
+\makeatother

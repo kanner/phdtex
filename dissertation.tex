@@ -1,111 +1,51 @@
-\documentclass[a4paper,12pt]{report} % добавить leqno в [] для нумерации слева
+\documentclass[a4paper,12pt]{report}
+% добавить leqno в [] для нумерации объектов слева
 
 \IfFileExists{./template/contrib/styles.tex}{\def\template{./template}}{\def\template{.}}
 
-\input{\template/contrib/packages}		% Подключаемые пакеты
-\input{\template/contrib/styles}			% Пользовательские стили
-\input{\template/contrib/stylesgost.tex}	% Cтили ГОСТ Р 7.0.11-2011
+% подключаемые пакеты, стили (в т.ч. ГОСТ Р 7.0.11-2011)
+\input{\template/contrib/packages}
+\input{\template/contrib/styles}
+\input{\template/contrib/stylesgost.tex}
 
-\usepackage{\template/contrib/tweaklist} % Подключаем пакет tweaklist.sty - формирование отступов в enumerate и itemize
+% \includeonly{01-title, \template/contrib/contents, parts/intro,
+% parts/references}
 
-%\includeonly{01-title,\template/contrib/contents,parts/intro,parts/references}
-
-% для проверки вхождения всех источников (+ см. ниже)
+% включить для проверки вхождения всех источников в текст (см. в конце)
 %\usepackage{refcheck}
 
-% Сужаем литературу для сохранения места
-%\usepackage{etoolbox}
-\patchcmd\thebibliography
-{\labelsep}
-{\labelsep\itemsep=0pt\parsep=0pt\setlength{\leftmargin}{15pt}\relax}
-{}
-{\typeout{Couldn't patch the command}}
-
-% Переопределяем общие установки для нумерованных перечней - пакет tweaklist.sty
-\renewcommand{\enumhook}{
-	\setlength{\itemindent}{1.7\parindent}%    Г  1-й абзацный отступ
-	\setlength{\itemsep}{0mm}%              В  Разделитель элементов
-	\setlength{\labelsep}{.5em}%            Г  Расстояние между маркером и текстом (0,5 кегля)
-	\setlength{\labelwidth}{0mm}%           Г  Ширина маркера
-	\setlength{\listparindent}{1.5\parindent}% Г  2-й и последующие абзацные отступы
-	\setlength{\leftmargin}{0mm}%           Г  Отступ списка слева
-	\setlength{\rightmargin}{0mm}%          Г  Отступ списка справа
-	\setlength{\parsep}{0mm}%               В  Расстояние между элементами или абзацами
-	\setlength{\parskip}{\parskip}%         В  Отступ над вложенным списком
-	\setlength{\partopsep}{0mm}%            В  Отступ списка
-	\setlength{\topsep}{0mm}%               В  Отступ вложенного списка
-}
-
-% Копируем настройки для перечней верхнего уровня
-\renewcommand{\enumhooki}{\enumhook}
-\renewcommand{\itemhooki}{\enumhook}
-\renewcommand{\enumhookii}{\enumhook}
-\renewcommand{\itemhookii}{\enumhook}
-
-%%% счетчики списка литературы, количества глав и приложений %%%
-\newtotcounter{bibnum}
-\newtotcounter{chapnum}
-\newtotcounter{appendnum}
-
-% сохраненный object %
-\def\oldcite{}
-\def\oldchap{}
-\def\oldappnd{}
-\let\oldcite=\bibcite
-\let\oldchap=\chapter
-\let\oldappnd=\chapter
-
-% object = object + увеличение счетчика %
-\def\bibcite{\stepcounter{bibnum}\oldcite}
-\def\realchapter{\stepcounter{chapnum}\oldchap}
-\def\appndchapter{\stepcounter{appendnum}\oldappnd}
-
-\input{00-info.tex}
-
-\date{\today}
-\makeatletter
-\def\dissauthor{\@author}
-\def\disstitle{\@title}
-\def\dissdate{\@date}
-\makeatother
-\def\dissyear{\the\year}
-
-%%% выставим атрибуты pdf-документа - см. styles.tex %%%
-\hypersetup{
-	pdftitle={\disstitle},		% Заголовок
-	pdfauthor={\dissauthor},	% Автор
-	pdfsubject={\disstitle},	% Тема
-	pdfcreator={\dissauthor},	% Создатель
-	pdfproducer={\dissauthor},	% Производитель
-}
-
-%%% Список сокращений - закомментировать, если не требуется %%%
+% нужно будет сделать список сокращений и условных обозначений
 \makenomenclature
-
-% для переопределения параметров geometry (для правильной работы fancyhdr)
-\makeatletter
-\newcommand{\resetHeadWidth}{\fancy@setoffs}
-\makeatother
 
 \begin{document}
 
-\input{\template/contrib/names}			% Переопределение именований
+% переопределение именований
+\input{\template/contrib/names}
 
-\include{\template/01-title}			% Титульный лист
+% титульный лист
+\include{\template/01-title}
 \resetHeadWidth
-\include{\template/contrib/contents}		% Оглавление
-% Части Введения для возможности исключения в \includeonly (основной текст в introduction.tex)
-\include{\template/parts/intro}		% Введение
-\include{03-part1}			% Глава 1
-\include{04-part2}			% Глава 2
-\include{05-part3}			% Глава 3
-\include{06-part4}			% Глава 4
-\include{07-conclusion}		% Заключение
-\include{\template/parts/lists}			% Списки таблиц и изображений
-\include{\template/parts/references}		% Список литературы
-\include{parts/appendix}		% Приложения
 
-%%% раскомментировать для пометки не вошедших источников из bibtex баз
+% оглавление
+\include{\template/contrib/contents}
+
+% текст введения находится в introduction.tex
+\include{\template/parts/intro}
+% главы 1-4, заключение
+\include{03-part1}
+\include{04-part2}
+\include{05-part3}
+\include{06-part4}
+\include{07-conclusion}
+
+% списки таблиц и изображений
+\include{\template/parts/lists}
+% список литературы
+\include{\template/parts/references}
+% приложения
+\include{parts/appendix}
+
+% раскомментировать для пометки не вошедших источников из bibtex-баз
 %\nocite{*}
 
 \end{document}
