@@ -89,6 +89,34 @@ spell: $(document).tex $(synopsis).tex $(PARTS) $(PARTS_SYNOPSIS)
 		aspell --lang=ru_RU -t -c $${i}; \
 	done
 
+# spellcheck target for template
+spelltmpl: $(document).tex $(synopsis).tex $(PARTS) $(PARTS_SYNOPSIS)
+	aspell --lang=ru_RU -t -c $(document).tex
+	aspell --lang=ru_RU -t -c $(synopsis).tex
+	for i in ${PARTS}; do \
+		if [[ $${i} == $(template)* ]]; then \
+			aspell --lang=ru_RU -t -c $${i}; \
+		fi \
+	done
+	for i in ${PARTS_SYNOPSIS}; do \
+		if [[ $${i} == $(template)* ]]; then \
+			aspell --lang=ru_RU -t -c $${i}; \
+		fi \
+	done
+
+# spellcheck target for local data
+spelldata: $(PARTS) $(PARTS_SYNOPSIS)
+	for i in ${PARTS}; do \
+		if [[ $${i} != $(template)* ]]; then \
+			aspell --lang=ru_RU -t -c $${i}; \
+		fi \
+	done
+	for i in ${PARTS_SYNOPSIS}; do \
+		if [[ $${i} != $(template)* ]]; then \
+			aspell --lang=ru_RU -t -c $${i}; \
+		fi \
+	done
+
 clean:
 	rm -f *.aux *.log *.ps *.lof *.lot *.out *.toc *.pdf *.blg *.bbl *.nls *.nlo *.ilg
 #	rm -f $(template)/contrib/*.aux
