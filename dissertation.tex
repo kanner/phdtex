@@ -1,12 +1,14 @@
 \documentclass[a4paper,12pt]{report} % добавить leqno в [] для нумерации слева
 
-\input{contrib/packages}		% Подключаемые пакеты
-\input{contrib/styles}			% Пользовательские стили
-\input{contrib/stylesgost.tex}	% Cтили ГОСТ Р 7.0.11-2011
+\IfFileExists{./template/contrib/styles.tex}{\def\template{./template}}{\def\template{.}}
 
-\usepackage{contrib/tweaklist} % Подключаем пакет tweaklist.sty - формирование отступов в enumerate и itemize
+\input{\template/contrib/packages}		% Подключаемые пакеты
+\input{\template/contrib/styles}			% Пользовательские стили
+\input{\template/contrib/stylesgost.tex}	% Cтили ГОСТ Р 7.0.11-2011
 
-%\includeonly{01-title,contrib/contents,parts/intro,parts/references}
+\usepackage{\template/contrib/tweaklist} % Подключаем пакет tweaklist.sty - формирование отступов в enumerate и itemize
+
+%\includeonly{01-title,\template/contrib/contents,parts/intro,parts/references}
 
 % для проверки вхождения всех источников (+ см. ниже)
 %\usepackage{refcheck}
@@ -104,20 +106,20 @@
 
 \begin{document}
 
-\input{contrib/names}			% Переопределение именований
+\input{\template/contrib/names}			% Переопределение именований
 
-\include{01-title}			% Титульный лист
+\include{\template/01-title}			% Титульный лист
 \resetHeadWidth
-\include{contrib/contents}		% Оглавление
+\include{\template/contrib/contents}		% Оглавление
 % Части Введения для возможности исключения в \includeonly (основной текст в introduction.tex)
-\include{parts/intro}		% Введение
+\include{\template/parts/intro}		% Введение
 \include{03-part1}			% Глава 1
 \include{04-part2}			% Глава 2
 \include{05-part3}			% Глава 3
 \include{06-part4}			% Глава 4
 \include{07-conclusion}		% Заключение
-\include{parts/lists}			% Списки таблиц и изображений
-\include{parts/references}		% Список литературы
+\include{\template/parts/lists}			% Списки таблиц и изображений
+\include{\template/parts/references}		% Список литературы
 \include{parts/appendix}		% Приложения
 
 %%% раскомментировать для пометки не вошедших источников из bibtex баз

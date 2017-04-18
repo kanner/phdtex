@@ -1,32 +1,41 @@
+ifndef template
+# path to template itself
+template += ./
+endif
+# this variable is used in Makefile[.bat], dissertation.tex,
+# synopsis.tex and contrib/styles.tex (bibliographystyle)
+
 TEX=latex
 PDFLATEX=pdflatex
 BIBTEX=bibtex
 NOMENCL=makeindex
-BIBTEXHELPER = ./contrib/bbl-sorter.pl
+BIBTEXHELPER = $(template)/contrib/bbl-sorter.pl
 
-document = dissertation
-synopsis = synopsis
-booklet = booklet
+document = $(template)/dissertation
+document-bib = dissertation
+synopsis = $(template)/synopsis
+synopsis-bib = synopsis
+booklet = $(template)/booklet
 
-PARTS = \
-	contrib/contents.tex \
-	contrib/names.tex \
-	contrib/packages.tex \
-	contrib/styles.tex \
-	contrib/stylesgost.tex \
-	contrib/tweaklist.sty \
-	contrib/utf8gost705my.bst \
-	contrib/utf8gost705u.bst \
-	contrib/utf8gost71my.bst \
-	contrib/utf8gost71s.bst \
+COMMON += \
+	$(template)/contrib/names.tex \
+	$(template)/contrib/packages.tex \
+	$(template)/contrib/styles.tex \
+	$(template)/contrib/stylesgost.tex \
+	$(template)/contrib/tweaklist.sty \
+	$(template)/contrib/utf8gost71my.bst
+
+PARTS += \
+	$(COMMON) \
+	$(template)/contrib/contents.tex \
 	parts/appendix.tex \
 	parts/biblio.bib \
 	parts/biblio-pub.bib \
 	parts/biblio-vak.bib \
-	parts/intro.tex \
-	parts/lists.tex \
-	parts/references.tex \
-	01-title.tex \
+	$(template)/parts/intro.tex \
+	$(template)/parts/lists.tex \
+	$(template)/parts/references.tex \
+	$(template)/01-title.tex \
 	02-introduction.tex \
 	03-part1.tex \
 	04-part2.tex \
@@ -34,31 +43,23 @@ PARTS = \
 	06-part4.tex \
 	07-conclusion.tex
 
-PARTS_SYNOPSIS = \
-	contrib/names.tex \
-	contrib/packages.tex \
-	contrib/styles.tex \
-	contrib/stylesgost.tex \
-	contrib/tweaklist.sty \
-	contrib/utf8gost705my.bst \
-	contrib/utf8gost705u.bst \
-	contrib/utf8gost71my.bst \
-	contrib/utf8gost71s.bst \
+PARTS_SYNOPSIS += \
+	$(COMMON) \
 	parts/biblio-pub-sheet.bib \
 	parts/biblio-scopus-sheet.bib \
 	parts/biblio-vak-sheet.bib \
 	parts/intro-syn.tex \
 	synopsis-parts/synopsis-content.tex \
-	synopsis-parts/synopsis-references.tex \
+	$(template)/synopsis-parts/synopsis-references.tex \
 	synopsis-parts/synopsis-results.tex \
-	synopsis-parts/synopsis-title.tex \
+	$(template)/synopsis-parts/synopsis-title.tex \
 	02-introduction.tex
 
 all: $(document) $(synopsis) $(booklet)
 
 $(document): $(document).tex $(PARTS)
 	$(PDFLATEX) $(document).tex
-	$(BIBTEX) $(document)
+	$(BIBTEX) $(document-bib)
 	$(BIBTEXHELPER)
 	$(NOMENCL) $(document).nlo -s nomencl.ist -o $(document).nls
 	$(PDFLATEX) $(document).tex
@@ -68,9 +69,9 @@ $(document): $(document).tex $(PARTS)
 
 $(synopsis): $(synopsis).tex $(PARTS_SYNOPSIS)
 	$(PDFLATEX) $(synopsis).tex
-	$(BIBTEX) $(synopsis)1
-	$(BIBTEX) $(synopsis)2
-	$(BIBTEX) $(synopsis)3
+	$(BIBTEX) $(synopsis-bib)1
+	$(BIBTEX) $(synopsis-bib)2
+	$(BIBTEX) $(synopsis-bib)3
 	$(PDFLATEX) $(synopsis).tex
 	# some elements (bib) could not be build
 	$(PDFLATEX) $(synopsis).tex
@@ -90,6 +91,6 @@ spell: $(document).tex $(synopsis).tex $(PARTS) $(PARTS_SYNOPSIS)
 
 clean:
 	rm -f *.aux *.log *.ps *.lof *.lot *.out *.toc *.pdf *.blg *.bbl *.nls *.nlo *.ilg
-	rm -f contrib/*.aux
+#	rm -f $(template)/contrib/*.aux
 	rm -f parts/*.aux parts/*.bbl parts/*.blg
 	rm -f synopsis-parts/*.aux synopsis-parts/*.bbl synopsis-parts/*.blg

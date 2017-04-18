@@ -1,25 +1,46 @@
+@echo off
+
 set texlive_bin=C:\texlive\2014\bin\win32
-# dirty hack -- set perl_bin
+::set texlive_bin=D:\programs\texlive\2016\bin\win32
+:: set perl_bin - only works with GitHub client installed
 for /f "delims=" %%i in ('where /R %LOCALAPPDATA%\GitHub perl') do set perl_bin=%%i
 
-# dissertation
-%texlive_bin%\pdflatex.exe dissertation.tex
-%texlive_bin%\bibtex.exe dissertation
-%perl_bin% .\contrib\bbl-sorter.pl
-%texlive_bin%\makeindex.exe dissertation.nlo -s nomencl.ist -o dissertation.nls
-%texlive_bin%\pdflatex.exe dissertation.tex
-# some elements (bib, nom) could not be build
-%texlive_bin%\pdflatex.exe dissertation.tex
-%texlive_bin%\pdflatex.exe dissertation.tex
+:: set path for local or template-usecase
+if "%~1"=="" set path=.
+else set path=%~1
 
-# synopsis
-%texlive_bin%\pdflatex.exe synopsis.tex
-%texlive_bin%\bibtex.exe synopsis1
-%texlive_bin%\bibtex.exe synopsis2
-%texlive_bin%\bibtex.exe synopsis3
-%texlive_bin%\pdflatex.exe synopsis.tex
-# some elements (bib) could not be build
-%texlive_bin%\pdflatex.exe synopsis.tex
+set dissertation=%path%\dissertation
+set dissertation-bib=dissertation
+set synopsis=%path%\synopsis
+set synopsis-bib=synopsis
+set booklet=%path%\booklet
 
-# booklet
-%texlive_bin%\pdflatex.exe booklet.tex
+:: dissertation
+%texlive_bin%\pdflatex.exe %dissertation%.tex || goto :error
+%texlive_bin%\bibtex.exe %dissertation-bib% || goto :error
+%perl_bin% %path%\contrib\bbl-sorter.pl || goto :error
+%texlive_bin%\makeindex.exe %dissertation%.nlo -s nomencl.ist -o %dissertation%.nls || goto :error
+%texlive_bin%\pdflatex.exe %dissertation%.tex || goto :error
+:: some elements (bib, nom) could not be build
+%texlive_bin%\pdflatex.exe %dissertation%.tex || goto :error
+%texlive_bin%\pdflatex.exe %dissertation%.tex || goto :error
+
+:: synopsis
+%texlive_bin%\pdflatex.exe %synopsis%.tex || goto :error
+%texlive_bin%\bibtex.exe %synopsis-bib%1 || goto :error
+%texlive_bin%\bibtex.exe %synopsis-bib%2 || goto :error
+%texlive_bin%\bibtex.exe %synopsis-bib%3 || goto :error
+%texlive_bin%\pdflatex.exe %synopsis%.tex || goto :error
+:: some elements (bib) could not be build
+%texlive_bin%\pdflatex.exe %synopsis%.tex || goto :error
+
+:: booklet
+%texlive_bin%\pdflatex.exe %booklet%.tex || goto :error
+
+:: succeeded
+goto :EOF
+
+:error
+echo Failed with error #%errorlevel%. Check the error messages above...
+::pause
+exit /b %errorlevel%

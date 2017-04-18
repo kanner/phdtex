@@ -1,9 +1,11 @@
 \documentclass[a5paper,10pt]{report} % добавить leqno в [] для нумерации слева
 %[a5paper,10pt,twoside]{report}
 
-\input{contrib/packages}		% Подключаемые пакеты
-\input{contrib/styles}			% Пользовательские стили
-\input{contrib/stylesgost.tex}	% Cтили ГОСТ Р 7.0.11-2011
+\IfFileExists{./template/contrib/styles.tex}{\def\template{./template}}{\def\template{./}}
+
+\input{\template/contrib/packages}		% Подключаемые пакеты
+\input{\template/contrib/styles}			% Пользовательские стили
+\input{\template/contrib/stylesgost.tex}	% Cтили ГОСТ Р 7.0.11-2011
 
 % для использования ссылок на страницы текста диссертации
 \usepackage{xr}
@@ -12,7 +14,7 @@
 \externaldocument{05-part3}
 \externaldocument{06-part4}
 
-\usepackage{contrib/tweaklist} % Подключаем пакет tweaklist.sty - формирование отступов в enumerate и itemize
+\usepackage{\template/contrib/tweaklist} % Подключаем пакет tweaklist.sty - формирование отступов в enumerate и itemize
 
 % Сужаем литературу для сохранения места
 %\usepackage{etoolbox}
@@ -123,7 +125,7 @@
 %%% Особенности в шаблоне автореферата %%%
 % для раздельной библиографии
 \usepackage{bibtopic}
-\bibliographystyle{contrib/utf8gost71my}
+\bibliographystyle{\template/contrib/utf8gost71my}
 % другой размер бумаги
 \geometry{a5paper,top=15mm,bottom=20mm,left=15mm,right=12mm}
 % в автореферате номер страницы снизу
@@ -142,9 +144,9 @@
 
 \begin{document}
 
-\input{contrib/names}			% Переопределение именований
+\input{\template/contrib/names}			% Переопределение именований
 
-\include{synopsis-parts/synopsis-title}			% Титульный лист автореферата с оборотом
+\include{\template/synopsis-parts/synopsis-title}			% Титульный лист автореферата с оборотом
 
 \resetHeadWidth
 
@@ -153,6 +155,6 @@
 
 \input{synopsis-parts/synopsis-content}			% Содержание работы по главам
 \input{synopsis-parts/synopsis-results}			% Основные результаты и выводы
-\input{synopsis-parts/synopsis-references.tex}	% Основные публикации по теме диссертации
+\input{\template/synopsis-parts/synopsis-references.tex}	% Основные публикации по теме диссертации
 
 \end{document}
