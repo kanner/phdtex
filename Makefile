@@ -23,7 +23,8 @@ COMMON += \
 	$(template)/contrib/styles.tex \
 	$(template)/contrib/stylesgost.tex \
 	$(template)/contrib/tweaklist.sty \
-	$(template)/contrib/utf8gost71my.bst
+	$(template)/contrib/utf8gost71my.bst \
+	00-info.tex
 
 PARTS += \
 	$(COMMON) \
