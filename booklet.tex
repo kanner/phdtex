@@ -6,6 +6,12 @@
 
 % печатать с двух сторон (по длинной стороне)
 \begin{document}
-\includepdf[pages={1-2},nup=1x2,landscape,signature=4]{synopsis.pdf}
-\includepdf[pages={3-},nup=1x2,landscape,signature=20]{synopsis.pdf}
+
+% тут все нормально, но нужно вручную выставлять signature
+%\includepdf[pages={1-2},nup=1x2,landscape,signature=4]{synopsis.pdf}
+%\includepdf[pages={3-},nup=1x2,landscape,signature=20]{synopsis.pdf}
+
+% тут последняя стр. может быть на обороте последнего листа обложки
+\includepdf[pages=-,booklet,landscape]{synopsis.pdf}
+
 \end{document}
