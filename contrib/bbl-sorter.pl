@@ -1,3 +1,12 @@
+#
+# phdtex
+#
+# Copyright (c) 2014-2017, Andrew Kanner <andrew.kanner@gmail.com>.
+# All rights reserved.
+#
+# SPDX-License-Identifier: MIT
+#
+
 #!/usr/bin/perl
 
 # script for sorting .bbl files (Russian items first, English items

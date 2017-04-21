@@ -1,3 +1,12 @@
+::
+:: phdtex
+::
+:: Copyright (c) 2014-2017, Andrew Kanner <andrew.kanner@gmail.com>.
+:: All rights reserved.
+::
+:: SPDX-License-Identifier: MIT
+::
+
 @echo off
 
 :: set path for local or template-usecase
