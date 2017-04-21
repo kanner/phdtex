@@ -1,96 +1,128 @@
-%%% Поля и разметка страницы %%%
-\usepackage{lscape}		% Для включения альбомных страниц
-\usepackage[headheight=17pt]{geometry}	% Для последующего задания полей (для устранения "\headheight is too small")
+%% Поля и разметка страницы
+% для альбомных страниц
+\usepackage{lscape}
+% для задания полей (+ устранение "\headheight is too small")
+\usepackage[headheight=17pt]{geometry}
 
-%%% Кодировки и шрифты %%%
-\usepackage{cmap}						% Улучшенный поиск русских слов в полученном pdf-файле
-\usepackage[T2A]{fontenc}				% Поддержка русских букв (кодировка)
-\usepackage[utf8]{inputenc}				% Кодировка utf8 (исходного текста)
-\usepackage[english, russian]{babel}	% Языки: русский, английский (локализация и переносы)
-\usepackage{pscyr}						% Красивые русские шрифты
-\usepackage{extsizes}					% Возможность сделать 14-й шрифт (не перенесено в documentclass extreport из-за неподдерживаемости в secsty)
-
-%%% Альтернативные шрифты %%%
+%% Кодировки и шрифты
+% улучшенный поиск русских слов в pdf
+\usepackage{cmap}
+% поддержка русских букв (кодировка)
+\usepackage[T2A]{fontenc}
+% кодировка исходного текста
+\usepackage[utf8]{inputenc}
+% языки, локализация и переносы
+\usepackage[english, russian]{babel}
+% красивые шрифты pscyr
+\usepackage{pscyr}
+% добавляет 14й шрифт (не перенесено в documentclass extreport из-за
+% несовместимости с secsty)
+\usepackage{extsizes}
+% альтернативные шрифты
 %\usepackage[english, russian]{babel}
-%\usepackage{fontspec}					% загрузка шрифтов Open Type, True Type и др.
-%\usepackage{euscript}					% Шрифт Евклид
-%\usepackage{mathrsfs}					% Красивый матшрифт
+% шрифты {open,true}type и др.
+%\usepackage{fontspec}
+% шрифт Евклид
+%\usepackage{euscript}
+% математический шрифт
+%\usepackage{mathrsfs}
 
-%%% Оформление абзацев, колонтитулов, текста %%%
-\usepackage{indentfirst}	% Красная строка
+%% Оформление абзацев, колонтитулов, текста
+% красная строка
+\usepackage{indentfirst}
 \frenchspacing
-\usepackage{fancyhdr}		% Колонтитулы
-\usepackage{setspace}		% Интерлиньяж
+% колонтитулы
+\usepackage{fancyhdr}
+% интерлиньяж
+\usepackage{setspace}
+% многострочные подписи
+\usepackage[singlelinecheck=off,center]{caption}
+% переносоустойчивые под-/зачеркивания (модификаторы начертания)
+\usepackage{soul}
+%\usepackage{soulutf8}
 
-%%% Математические пакеты %%%
-\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools,amscd}	% Математические дополнения от AMS
-\usepackage{icomma}												% "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
-\usepackage{mathtext}											% русские буквы в формулах
-%\usepackage{leqno}												% Нумерация формул слева
+%% Для работы с формулами
+% дополнения от AMS
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools,amscd}
+% правила для запятой: $0,1$ -- число, $0, 1$ -- перечисление
+\usepackage{icomma}
+% текст в формулах
+\usepackage{mathtext}
+% для нумерации формул слева (см. комментарии к documentclass)
+%\usepackage{leqno}
 
-%%% Цвета %%%
+%% Цветовые эффекты
 \usepackage[usenames]{color}
-\usepackage{color}
+%\usepackage{color}
 \usepackage{colortbl}
+% выделение текста
 \usepackage[usenames,dvipsnames,svgnames,table,rgb]{xcolor}
+%\usepackage{xcolor}
+\usepackage{varwidth}
+\usepackage{lipsum}
+% deprecated вариант
+%\usepackage[normalem]{ulem}
 
-%%% Таблицы %%%
-\usepackage{array,tabularx,tabulary,booktabs}	% Дополнительная работа с таблицами
-\usepackage{longtable}							% Длинные таблицы
-\usepackage{multirow,makecell}					% Улучшенное форматирование таблиц (слияние строк и т.п.)
-
-%%% Общее форматирование
-\usepackage[singlelinecheck=off,center]{caption}	% Многострочные подписи
-\usepackage{soul}									% Поддержка переносоустойчивых подчеркиваний и зачеркиваний
-%\usepackage{soulutf8}								% Аналогичные модификаторы начертания
-
-%%% Библиография %%%
-\usepackage{cite}				% Красивые ссылки на литературу (библиография)
-%\usepackage[superscript]{cite}	% Ссылки в верхних индексах
-%\usepackage[nocompress]{cite}
-\usepackage{csquotes}			% Еще инструменты для ссылок
-%\usepackage[backend=biber,bibencoding=utf8,sorting=ynt,maxcitenames=2,style=authoryear]{biblatex}
-%\addbibresource{bib1.bib}
-%\usepackage[style=authoryear,maxcitenames=2,backend=biber,sorting=nty]{biblatex}
-
-%%% Гиперссылки %%%
-\usepackage[linktocpage=true,plainpages=false,pdfpagelabels=false]{hyperref}
-
-%%% Изображения %%%
-\usepackage{graphicx}	% Подключаем пакет работы с графикой
-\usepackage{wrapfig}	% Обтекание рисунков текстом
-
-%%% Оглавление %%%
-\usepackage{tocloft}
-
-%%% Программирование %%%
-\usepackage{etoolbox}	% логические операторы
-
-%%% Рисование
-\usepackage{tikz}		% Работа с графикой
+%% Изображения, графика
+\usepackage{graphicx}
+% обтекание текстом
+\usepackage{wrapfig}
+% рисование
+\usepackage{tikz}
 \usepackage{pgfplots}
 \usepackage{pgfplotstable}
 \usetikzlibrary{positioning,shapes,shadows,arrows,intersections,patterns}
 \pgfplotsset{width=7cm,compat=1.10}
 \usepgfplotslibrary{fillbetween}
 
-%%% Другие пакеты %%%
-\usepackage{lastpage}	% Узнать, сколько всего страниц в документе.
-\usepackage{multicol}	% Несколько колонок
-\usepackage{totcount}	% Счетчики для глав, приложений и т.д.
-\usepackage{listings}	% Для блоков кода
+%% Таблицы
+% дополнительные возможности
+\usepackage{array,tabularx,tabulary,booktabs}
+% таблицы на несколько страниц
+\usepackage{longtable}
+% форматирование таблиц (слияние строк, ячеек и др.)
+\usepackage{multirow,makecell}
 
-%%% Выделение текста %%%
-\usepackage{varwidth}
-\usepackage{xcolor}
-\usepackage{lipsum}
-% второй вариант
-%\usepackage[normalem]{ulem}
+%% Библиография
+% ссылки на литературу
+\usepackage{cite}
+% ссылки в верхних индексах
+%\usepackage[superscript]{cite}
+%\usepackage[nocompress]{cite}
+% еще инструменты для ссылок
+\usepackage{csquotes}
+% biblatex [deprecated!]
+%\usepackage[backend=biber,bibencoding=utf8,sorting=ynt,maxcitenames=2,style=authoryear]{biblatex}
+%\usepackage[...,sorting=nty,...]{biblatex}
+%\addbibresource{parts/biblio.bib}
 
-%%% Опционально %%%
-%\usepackage{savetrees}			% ужимание текста
-%\usepackage[print]{booklet}	% печать брошюрой (не тестировалось)
+%% Гиперссылки
+\usepackage[linktocpage=true,plainpages=false,pdfpagelabels=false]{hyperref}
 
-%\usepackage{lmodern} % устранение "Font shape undefined" [http://ctan.org/pkg/lm, http://www.tex.ac.uk/cgi-bin/texfaq2html?label=fontsize]
+%% Оглавление
+\usepackage{tocloft}
 
+%% Программирование
+% логические операторы
+\usepackage{etoolbox}
+
+%% Другие пакеты
+% подсчет количества страниц в документе
+\usepackage{lastpage}
+% несколько колонок
+\usepackage{multicol}
+% счетчики для глав, приложений и т.д. [deprecated!?]
+\usepackage{totcount}
+% листинги исходных кодов
+\usepackage{listings}
+
+%% Дополнительно
+% форматирование сносок
 \usepackage{footmisc}
+% ужимание текста
+%\usepackage{savetrees}
+% печать брошюрой (не тестировалось)
+%\usepackage[print]{booklet}
+% устранение "Font shape undefined" [http://ctan.org/pkg/lm,
+% http://www.tex.ac.uk/cgi-bin/texfaq2html?label=fontsize]
+%\usepackage{lmodern}

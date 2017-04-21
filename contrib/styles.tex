@@ -1,100 +1,131 @@
-%%% Макет страницы %%%
+%% Макет страницы, поля и разметка [перенесено в stylesgost.tex]
 %\geometry{a4paper,top=2cm,bottom=2cm,left=3cm,right=1cm}
 
-%%% Кодировки и шрифты %%%
-\renewcommand{\rmdefault}{ftm} % Включаем Times New Roman
+%% Кодировки и шрифты
+% times new roman
+\renewcommand{\rmdefault}{ftm}
 
-%%% Альтернативные шрифты (см. packages.tex) %%%
-%\defaultfontfeatures{Ligatures={TeX},Renderer=Basic}		% свойства шрифтов по умолчанию
-%\setmainfont[Ligatures={TeX,Historic}]{Times New Roman}	% основной шрифт документа
-%\setsansfont{Comic Sans MS}								% шрифт без засечек
+%% Альтернативные шрифты (см. packages.tex)
+% свойства шрифтов по умолчанию
+%\defaultfontfeatures{Ligatures={TeX},Renderer=Basic}
+% основной шрифт документа
+%\setmainfont[Ligatures={TeX,Historic}]{Times New Roman}
+% шрифт без засечек
+%\setsansfont{Comic Sans MS}
 %\setmonofont{Courier New}
-%\renewcommand{\familydefault}{\sfdefault}					% Начертание шрифта
+% начертание шрифта
+%\renewcommand{\familydefault}{\sfdefault}
 
-%%% Номера формул %%%
-%\mathtoolsset{showonlyrefs=true}	% Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+%% Номера формул
+% номера только у тех формул, на которые есть \eqref{} в тексте
+%\mathtoolsset{showonlyrefs=true}
 
-%%% Выравнивание и переносы %%%
-\sloppy					% Избавляемся от переполнений
-\clubpenalty=10000		% Запрещаем разрыв страницы после первой строки абзаца
-\widowpenalty=10000		% Запрещаем разрыв страницы после последней строки абзаца
+%% Выравнивание и переносы
+% не допускать переполнений
+\sloppy
+% запретить разрыв страницы после первой строки абзаца
+\clubpenalty=10000
+% запретить разрыв страницы после последней строки абзаца
+\widowpenalty=10000
+% для растягивания или игнорирования "Underfull \hbox"
+%\setlength{\emergencystretch}{1pt}
+%\sloppy
+% глобальные правила переноса (или запрета переноса)
+%\hyphenation{сло-во}
+% "Overfull", стандартный допустимый: 0.1pt
+%\hfuzz=2.5pt
+% разреженность, стандартный порог: 200
+%\tolerance=400
 
-%%% Библиография %%%
-\makeatletter
-\bibliographystyle{\template/contrib/utf8gost71my}	% Оформляем библиографию в соответствии с ГОСТ 7.0.5
-\renewcommand{\@biblabel}[1]{#1.}	% Заменяем библиографию с квадратных скобок на точку:
-\makeatother
-
-%%% Изображения %%%
-\graphicspath{{images/}}	% Пути к изображениям
-\setlength\fboxsep{3pt}		% Отступ рамки \fbox{} от рисунка
-\setlength\fboxrule{1pt}	% Толщина линий рамки \fbox{}
-
-%%% Цвета гиперссылок %%%
-\definecolor{linkcolor}{rgb}{0.9,0,0}
-\definecolor{citecolor}{rgb}{0,0.6,0}
-\definecolor{urlcolor}{rgb}{0,0,1}
-\hypersetup{					% Гиперссылки
-	unicode=true,				% русские буквы в раздела PDF
-    colorlinks=true,			% false: ссылки в рамках; true: цветные ссылки
-    linkcolor={linkcolor},		% внутренние ссылки
-    citecolor={citecolor},		% на библиографию
-    filecolor=magenta,			% на файлы
-    urlcolor={urlcolor}			% на URL
-}
-
-%%% Оглавление %%%
-\renewcommand{\cftchapdotsep}{\cftdotsep}
-
-%%% Теоремы %%%
-\theoremstyle{plain}		% Это стиль по умолчанию, его можно не переопределять.
+%% Математические конструкции (теоремы, утверждения и т.д.)
+% стиль по умолчанию
+\theoremstyle{plain}
 \newtheorem{theorem}{Теорема}
 \newtheorem{proposition}{Утверждение}
 \newtheorem{lemma}{Лемма}
-
-\theoremstyle{definition}	% "Определение"
+% стиль определений
+\theoremstyle{definition}
 \newtheorem{corollary}{Следствие}
 \newtheorem{problem}{Задача}[section]
 \newtheorem{condition}{Условие}
 \newtheorem{definition}{Определение}
 \newtheorem{axiom}{Аксиома}
-
-\theoremstyle{remark}		% "Примечание"
+% стиль примечаний
+\theoremstyle{remark}
 \newtheorem*{nonum}{Решение}
 
-%%% Выделение текста %%%
+%% Цветовые эффекты (выделение текста)
 \newcommand\hly[1]{\colorbox{yellow!80}{\begin{varwidth}{\dimexpr\linewidth-2\fboxsep}#1\end{varwidth}}}
 \newcommand\hlg[1]{\colorbox{green!80}{\begin{varwidth}{\dimexpr\linewidth-2\fboxsep}#1\end{varwidth}}}
-
-%%% Цветные текст-боксы для таблиц и графиков %%%
+% цветные текст-боксы для таблиц и графиков
 \newcommand\hlyy[1]{\fcolorbox{black!50}{yellow!25}{\begin{varwidth}{\dimexpr\linewidth-2\fboxsep}#1\end{varwidth}}}
 \newcommand\hlgg[1]{\fcolorbox{black!50}{green!25}{\begin{varwidth}{\dimexpr\linewidth-2\fboxsep}#1\end{varwidth}}}
 \newcommand\hlbrr[1]{\fcolorbox{black!50}{brown!25}{\begin{varwidth}{\dimexpr\linewidth-2\fboxsep}#1\end{varwidth}}}
 \newcommand\hlbll[1]{\fcolorbox{black!50}{black!25}{\begin{varwidth}{\dimexpr\linewidth-2\fboxsep}#1\end{varwidth}}}
 \newcommand\hlrr[1]{\fcolorbox{black!50}{red!25}{\begin{varwidth}{\dimexpr\linewidth-2\fboxsep}#1\end{varwidth}}}
 \newcommand\hlbluu[1]{\fcolorbox{black!50}{blue!25}{\begin{varwidth}{\dimexpr\linewidth-2\fboxsep}#1\end{varwidth}}}
-
 \newcommand\hlempty[1]{\fcolorbox{black!50}{white}{\begin{varwidth}{\dimexpr\linewidth-2\fboxsep}#1\end{varwidth}}}
-
 \newcommand\hlbr[1]{\colorbox{brown!80}{\begin{varwidth}{\dimexpr\linewidth-2\fboxsep}#1\end{varwidth}}}
 \newcommand\hlbl[1]{\colorbox{black!80}{\begin{varwidth}{\dimexpr\linewidth-2\fboxsep}#1\end{varwidth}}}
 \newcommand\hlr[1]{\colorbox{red!80}{\begin{varwidth}{\dimexpr\linewidth-2\fboxsep}#1\end{varwidth}}}
 \newcommand\hlblu[1]{\colorbox{blue!80}{\begin{varwidth}{\dimexpr\linewidth-2\fboxsep}#1\end{varwidth}}}
-
-% второй вариант
-%\newcommand\hl{\bgroup\markoverwith %
-%	{\textcolor{yellow}{\rule[-.5ex]{2pt}{2.5ex}}}\ULon}
-% третий вариант
+% deprecated вариант2
+% \newcommand\hl{\bgroup\markoverwith{\textcolor{yellow}{\rule[-.5ex]{2pt}{2.5ex}}}\ULon}
+% deprecated вариант3
 %\newcommand*{\hl}[1]{\colorbox{yellow}{#1}}
 
-%%% Стили JavaScript %%%
+%% Изображения
+% путь к каталогу с изображениями
+\graphicspath{{images/}}
+% отступ рамки \fbox{} от рисунка
+\setlength\fboxsep{3pt}
+% толщина линий рамки \fbox{}
+\setlength\fboxrule{1pt}
+
+%% Библиография
+\makeatletter
+% библиография в соответствии с ГОСТ 7.1-2003
+\bibliographystyle{\template/contrib/utf8gost71my}
+% заменить квадратные скобки на точку
+\renewcommand{\@biblabel}[1]{#1.}
+\makeatother
+
+%% Гиперссылки: цвета и другие настройки
+\definecolor{linkcolor}{rgb}{0.9,0,0}
+\definecolor{citecolor}{rgb}{0,0.6,0}
+\definecolor{urlcolor}{rgb}{0,0,1}
+\hypersetup{
+  % русские буквы в разделах
+  unicode=true,
+  % true: цветные ссылки; false: ссылки в рамках
+  colorlinks=true,
+  % внутренние ссылки
+  linkcolor={linkcolor},
+  % ссылки на библиографию
+  citecolor={citecolor},
+  % на файлы
+  filecolor=magenta,
+  % на URL
+  urlcolor={urlcolor}
+}
+
+%% Оглавление
+\renewcommand{\cftchapdotsep}{\cftdotsep}
+
+
+%% Листинги
+% стиль javascript
 \lstdefinelanguage{JavaScript}{
-  keywords={break, case, catch, continue, debugger, default, delete, do, else, false, finally, for, function, if, in, instanceof, new, null, return, switch, this, throw, true, try, typeof, var, void, while, with},
+  keywords={break, case, catch, continue, debugger, default, delete,
+    do, else, false, finally, for, function, if, in, instanceof, new,
+    null, return, switch, this, throw, true, try, typeof, var, void,
+    while, with},
   comment=[l]{//},
   morecomment=[s]{/*}{*/},
   morestring=[b]',
   morestring=[b]",
-  ndkeywords={class, export, boolean, throw, implements, import, this},
+  ndkeywords={class, export, boolean, throw, implements, import,
+    this},
   keywordstyle=\color{blue}\bfseries,
   ndkeywordstyle=\color{yellow}\bfseries,
   identifierstyle=\color{black},
@@ -102,68 +133,86 @@
   stringstyle=\color{red}\ttfamily
   sensitive=true,
 }
-
-%%% Стили XML %%%
+% стиль xml
 \lstdefinelanguage{xml}{
-	morekeywords={name,description,memory,unit,os,arch,machine,devices,emulator,hostdev, mode, type, managed, source, vendor, id, product, address, domain, bus, slot, function},
-	numbers=none,
-	frame=none,
-	belowskip=2pt,
-	caption=,
+  morekeywords={name,description,memory,unit,os,arch,machine,devices,emulator,hostdev,
+    mode, type, managed, source, vendor, id, product, address, domain,
+    bus, slot, function},
+  numbers=none,
+  frame=none,
+  belowskip=2pt,
+  caption=,
 }
-
-%%% Стили Bash %%%
+% стиль bash
 \lstdefinelanguage{bashhh}{
-	morekeywords={modprobe,echo},
-	deletekeywords={bind},
-	morecomment=[l]{\#},
-	numbers=none,
-	frame=none,
-	belowskip=2pt,
-	caption=,
+  morekeywords={modprobe,echo},
+  deletekeywords={bind},
+  morecomment=[l]{\#},
+  numbers=none,
+  frame=none,
+  belowskip=2pt,
+  caption=,
 }
-
-%%% Цветовые схемы для выделения блоков кода %%%
+% цветовая схема для выделения блоков кода
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codemauve}{rgb}{0.58,0,0.82}
 \lstset{
-  columns=fixed,					% Делаем моноширинный шрифт
-  backgroundcolor=\color{white},	% Цвет фона, нужно подключить пакет color или xcolor
-  basicstyle=\small\sffamily,		% Размер и начертание
-  breakatwhitespace=false,			% Переносим строки только при наличии пробела
-  breaklines=true,					% Автоматически переносим строки
-  captionpos=b,						% Позиция заголовка вверху [t] или внизу [b]
-  commentstyle=\color{codegreen},	% Стиль для комментариев
-  deletekeywords={...},				% Удалить какие-нибудь ключевые слова из языка
-  escapeinside={\%*}{*)},			% Если вы хотите использовать LaTeX в вашем коде
-  extendedchars=true,				% Позволяем использовать не-ASCII символы
-%  extendedchars=\true,
-% inputencoding=utf8x,
-%  keepspaces = true,
-  frame=single,						% Добавляем рамку вокруг кода
-  keywordstyle=\color{blue},		% Стиль для ключевых слов
-%  language=C,						% Язык программирования должен выставляться в самом листинге
-%  language=JavaScript,
-  morekeywords={*,...},				% Пользовательские ключевые слова
-  numbers=left,						% Позиция номеров строк
-  numbersep=5pt,					% Как далеко номера строк находятся от кода
-  numberstyle=\tiny\color{codegray},% Стиль для номеров строк
-  rulecolor=\color{black},			% Если не установлено, то цвет рамки может меняться
-  showspaces=false,					% Показывать ли пробелы с помощью специальных отступов
-  showstringspaces=false,			% Показывать ли пробелы в строках
-  showtabs=false,					% Показывать ли знаки табуляции
-  stepnumber=1,						% Размер шага между номерами строк
-  stringstyle=\color{codemauve},	% Стиль для строковых литералов
-  tabsize=2,						% Размер табуляции
-  title=\lstname					% Показывать имя подключаемого файла
+  % язык программирования [должен выставляться в самом листинге!]
+  % language=C,
+  % language=JavaScript,
+  % моноширинный шрифт
+  columns=fixed,
+  % цвет фона (использует пакеты color/xcolor)
+  backgroundcolor=\color{white},
+  % размер и начертание
+  basicstyle=\small\sffamily,
+  % перенос строки только при наличии пробела
+  breakatwhitespace=false,
+  % автоматический перенос строк
+  breaklines=true,
+  % позиция заголовка (вверху: t, внизу: b)
+  captionpos=b,
+  % стиль для комментариев
+  commentstyle=\color{codegreen},
+  % стиль для ключевых слов
+  keywordstyle=\color{blue},
+  % дополнительные ключевые слова
+  morekeywords={*,...},
+  % можно удалить какие-нибудь ключевые слова
+  deletekeywords={...},
+  % для использования latex в коде
+  escapeinside={\%*}{*)},
+  % разрешить использовать не-ASCII символы
+  extendedchars=true,
+  % extendedchars=\true,
+  % inputencoding=utf8x,
+  % keepspaces = true,
+  % добавить рамку вокруг кода
+  frame=single,
+  % если не установлено, то цвет рамки может меняться
+  rulecolor=\color{black},
+  % позиция номеров строк
+  numbers=left,
+  % расстояние от номера строки до кода
+  numbersep=5pt,
+  % размер шага между номерами строк
+  stepnumber=1,
+  % стиль для номеров строк
+  numberstyle=\tiny\color{codegray},
+  % не показывать пробелы в виде отступов
+  showspaces=false,
+  % не показывать пробелы в строках
+  showstringspaces=false,
+  % не показывать знаки табуляции
+  showtabs=false,
+  % стиль для строковых литералов
+  stringstyle=\color{codemauve},
+  % размер табуляции
+  tabsize=2,
+  % показывать имя подключаемого файла
+  title=\lstname
 }
 
-%%% для растягивания или игнорирования "Underfull \hbox"
-%\setlength{\emergencystretch}{1pt}
-%\sloppy
-%\hyphenation{сло-во} % глобальные правила переноса (или запрета переноса)
-%\hfuzz=2.5pt % 0.1pt -- стандартный допустимый "Overfull"
-%\tolerance=400 % 200 -- стандартный порог разреженности
-
-%%% использовать \slash -- для переноса слов, разделенных "\"?
+%% Разное
+% использовать \slash для переноса слов, разделенных "\"?

@@ -1,6 +1,7 @@
 #!/usr/bin/perl
 
-### script for sorting .bbl files (Russian items first, English items second)
+# script for sorting .bbl files (Russian items first, English items
+# second)
 
 use File::Copy;
 
@@ -11,7 +12,8 @@ while (<bblfile>){
     $string .= $_;
 }
 
-# split bbl-file into bibitem blocks (first and last elements = bbl metainfo)
+# split bbl-file into bibitem blocks (first and last elements = bbl
+# metainfo)
 @array = split(/\n{2,}/, $string);
 $blocks_count = @array;
 
@@ -19,7 +21,8 @@ $blocks_count = @array;
 @eng = ();
 @ruseng = ();
 
-# search for "\selectlanguageifdefined{" and populate 2 arrays for Russian and English bibitems
+# search for "\selectlanguageifdefined{" and populate 2 arrays for
+# Russian and English bibitems
 for (my $i = 0; $i <= $blocks_count; $i++) {
     my @subarray = split(/\n/, $array[$i]);
     if ((index $array[$i],"\selectlanguageifdefined{russian}") != -1) {

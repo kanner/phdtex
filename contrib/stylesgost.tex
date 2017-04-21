@@ -1,115 +1,77 @@
-%%% Колонтитулы (см. packages.tex) %%%
-\pagestyle{fancy}
-\renewcommand{\headrulewidth}{0pt}	% Толщина линейки, отчеркивающей верхний колонтитул
-%\lfoot{Нижний левый}
-%\rfoot{Нижний правый}
-%\rhead{Верхний правый}
-%\chead{Верхний в центре}
-%\lhead{Верхний левый}
-%\cfoot{Нижний в центре}			% По умолчанию здесь номер страницы
-\lfoot{}
-\rfoot{}
-\rhead{}
-\chead{\normalsize\thepage}
-\lhead{}
-\cfoot{}
-% при использовании chapters - первая страница создается в plain pagestyle
-\fancypagestyle{plain}{\pagestyle{fancy}}
-
-
-
-%%% Интерлиньяж %%%
-\onehalfspacing	% Интерлиньяж 1.5
-%\doublespacing	% Интерлиньяж 2
-%\singlespacing	% Интерлиньяж 1
-
-
-
-%%% Макет страницы %%%
+%% Макет страницы, поля и разметка
 \geometry{a4paper,top=20mm,bottom=20mm,left=25mm,right=10mm}
-% Абзацный отступ 5 знаков (5 пробелов ~ 2em)
+
+%% Оформление абзацев, колонтитулов, текста
+% колонтитулы
+\pagestyle{fancy}
+% толщина линейки, отчеркивающей верхний колонтитул
+\renewcommand{\headrulewidth}{0pt}
+% нижний левый
+\lfoot{}
+% нижний правый
+\rfoot{}
+% верхний правый
+\rhead{}
+% верхний в центре, номер страницы здесь
+\chead{\normalsize\thepage}
+% верхний левый
+\lhead{}
+% нижний в центре
+\cfoot{}
+
+% текст
+% при использовании chapters первая страница в plain pagestyle
+\fancypagestyle{plain}{\pagestyle{fancy}}
+% интерлиньяж 1.5 (либо \singlespacing, \doublespacing)
+\onehalfspacing
+% абзацный отступ 5 знаков (5 пробелов ~ 2em)
 \parindent=2em
 
-% Заголовки от текста сверху и снизу - 3 интервала (по умолчанию)
-% Частично рабочие варианты:
-%	\usepackage{titlesec}
-%	\setlength{\parskip}{0.5cm}
-%	\titlespacing{\section}{0pt}{\parskip}{-\parskip}
-%	\titlespacing{\subsection}{0pt}{\parskip}{-\parskip}
-%	\titlespacing{\subsubsection}{0pt}{\parskip}{-\parskip}
+% для переопределения параметров geometry (правильной работы fancyhdr)
+\makeatletter
+\newcommand{\resetHeadWidth}{\fancy@setoffs}
+\makeatother
 
+% заголовки (от текста сверху и снизу 3 интервала, по умолчанию)
+% deprecated вариант
+%\usepackage{titlesec}
+%\setlength{\parskip}{0.5cm}
+%\titlespacing{\section}{0pt}{\parskip}{-\parskip}
+%\titlespacing{\subsection}{0pt}{\parskip}{-\parskip}
+%\titlespacing{\subsubsection}{0pt}{\parskip}{-\parskip}
+
+% центрирование заголовков, запрет переносов (\hyphenation для всех)
 \usepackage{sectsty}
-% центрирование заголовков + запрет переносов (\hyphenation для всех)
-%\allsectionsfont{\centering\raggedright}
 \allsectionsfont{\centering\normalsize\raggedright}
 
-% singlespacing в заголовках %
-% Необходимо использовать \begin{singlespace}...\end{singlespace} если заголовок длинный
-% Частично рабочие варианты:
-%	\pretocmd{\@chap}{\singlespacing}{}{}
-%	\apptocmd{\@chap}{\onehalfspacing}{}{}
-%
-%	\let\oldchap\chapter
-%	\renewcommand*{\chapter}[1]{\singlespace\oldchap{#1}\onehalfspacing}
-%
-%	\usepackage{titlesec}
-%	\titleformat{\chapter}
-%	{\singlespacing\normalfont\Huge\bfseries}{\thechapter}{1em}{}
-
-% центрирование глав + отступы после глав, добавление "." после номера разделов
-%\sectionfont{\normalsize}
+% центрирование глав, отступы после, "." после номеров разделов
 \usepackage{titlesec}
-%\titleformat{\chapter}{\centering\normalsize\bf}{\thechapter.}{0pt}{\normalsize\bf}
-%\titleformat{\chapter}{\centering\bf}{\thechapter.}{10pt}{\bf}
+%\sectionfont{\normalsize}
 \titleformat{\chapter}{\centering\bf}{\thechapter.}{10pt}{\bf}
 \titlespacing*{\chapter}{0pt}{*0}{2ex}
 \titlelabel{\thetitle.\quad}
 
-% Изменение размера заголовка Содержания
-%\renewcommand{\cfttoctitlefont}{\hfill\Large\bfseries}
+% изменение размера заголовка Содержания
 \renewcommand{\cfttoctitlefont}{\Large\bfseries}
-% Точка после номеров разделов
+% "." после номеров разделов
 \renewcommand{\cftchapaftersnum}{.}
 \renewcommand{\cftsecaftersnum}{.}
 \renewcommand{\cftsubsecaftersnum}{.}
 
-% Изменение размера Списка рисунков и таблиц
-\renewcommand\cftloftitlefont{\hspace*{\fill}\normalsize\bf}
-\renewcommand{\cftafterloftitle}{\hspace*{\fill}}
-\renewcommand\cftlottitlefont{\hspace*{\fill}\normalsize\bf}
-\renewcommand{\cftafterlottitle}{\hspace*{\fill}}
+% singlespacing в заголовках (вставлено в основной текст)
+% deprecated варианты:
+%\pretocmd{\@chap}{\singlespacing}{}{}
+%\apptocmd{\@chap}{\onehalfspacing}{}{}
+%%\let\oldchap\chapter
+%%\renewcommand*{\chapter}[1]{\singlespace\oldchap{#1}\onehalfspacing}
+%%%\usepackage{titlesec}
+%%%\titleformat{\chapter}
+%%%{\singlespacing\normalfont\Huge\bfseries}{\thechapter}{1em}{}
 
-%%% список сокращений %%%
-\usepackage{nomencl}
-% Позволяет одновременно печатать условное обозначение в тексте документа и добавлять его в перечень
-\newcommand*{\nom}[2]{#1\nomenclature{#1}{#2}}
-% Перечень сокращений будет распечатываться по алфавиту вне зависимости от появления в тексте
-% Пример:
-%	\nom{Б}{Вторая буква алфавита}.
-%	А\nomenclature{А}{Первая буква алфавита}
-\setlength\nomlabelwidth{5cm}
-
-
-
-%%% Формат формул и ссылок на формулы %%%
-% ПРИМЕР:
-%\begin{equation}\label{name}
-%	2+2=4
-%\end{equation}
-%
-%Формула \eqref{name}
-
-
-
-%%% Прочее: %%%
-%	- Список литературы формируется в порядке возрастания - bib1, bib2, bib3,...
-% 	- по ГОСТ НЕОБХОДИМО, чтобы источники на отличном от русского языке перечислялись ПОСЛЕ источников на русском
-%	- Приложения ДОЛЖНЫ быть перечислены в порядке их перечисления в тексте
-
+%% Списки
+% переопределение символа ненумерованного списка
 \def\labelitemi{--}
-
-
-%%% отключение отступов у списков %%%
+% отключение отступов у списков
 \usepackage{paralist}
 \let\itemize\compactitem
 \let\enditemize\endcompactitem
@@ -120,8 +82,7 @@
 %\pltopsep=\medskipamount
 %\plitemsep=1pt
 %\plparsep=1pt
-
-% некорректно работает с synopsis.tex
+% deprecated вариант
 %\usepackage{enumitem}
 %%\setlist[enumerate]{nosep}
 %%\setlist[itemize]{nosep}
@@ -129,25 +90,59 @@
 %%\setlist{nolistsep}
 %\setlist{nosep}
 
+% для формирование отступов в enumerate и itemize
+\usepackage{\template/contrib/tweaklist}
+% переопределяем установки для нумерованных перечней
+\renewcommand{\enumhook}{
+  % 1-й абзацный отступ
+  \setlength{\itemindent}{1.7\parindent}
+  % разделитель элементов
+  \setlength{\itemsep}{0mm}
+  % расстояние между маркером и текстом (0,5 кегля)
+  \setlength{\labelsep}{.5em}
+  % ширина маркера
+  \setlength{\labelwidth}{0mm}
+  % 2-й и последующие абзацные отступы
+  \setlength{\listparindent}{1.5\parindent}
+  % отступ списка слева
+  \setlength{\leftmargin}{0mm}
+  % отступ списка справа
+  \setlength{\rightmargin}{0mm}
+  % расстояние между элементами или абзацами
+  \setlength{\parsep}{0mm}
+  % отступ над вложенным списком
+  \setlength{\parskip}{\parskip}
+  % отступ списка
+  \setlength{\partopsep}{0mm}
+  % отступ вложенного списка
+  \setlength{\topsep}{0mm}
+}
+% копируем настройки для перечней разного уровня
+\renewcommand{\enumhooki}{\enumhook}
+\renewcommand{\itemhooki}{\enumhook}
+\renewcommand{\enumhookii}{\enumhook}
+\renewcommand{\itemhookii}{\enumhook}
 
-%%% подписи без ":" %%%
-%%\DeclareCaptionLabelFormat{dash}{#1--#2}
-%%\captionsetup[figure]{labelformat=dash}
-%\captionsetup[figure]{labelsep=endash}
-%\captionsetup[table]{labelsep=endash}
-\captionsetup{labelsep=endash}
-
-% special enumerate list with indentation, similar to enumitem-package
-% "\setenumerate{listparindent=\parindent}"
+% специальный список с индентацией (аналогично пакету enumitem)
 \newenvironment{myenumerate}{%
   \edef\backupindent{\the\parindent}%
   \enumerate%
   \setlength{\parindent}{\backupindent}%
 }{\endenumerate}
 
+%% Список рисунков и таблиц (изменение размера)
+\renewcommand\cftloftitlefont{\hspace*{\fill}\normalsize\bf}
+\renewcommand{\cftafterloftitle}{\hspace*{\fill}}
+\renewcommand\cftlottitlefont{\hspace*{\fill}\normalsize\bf}
+\renewcommand{\cftafterlottitle}{\hspace*{\fill}}
 
-%%% ниже перенесенные стили из dissertation.tex/synopsis.tex
+%% Список сокращений
+\usepackage{nomencl}
+% печатает условное обозначение в тексте и добавлять его в перечень
+\newcommand*{\nom}[2]{#1\nomenclature{#1}{#2}}
+\setlength\nomlabelwidth{5cm}
 
+%% Список литературы
 % сужаем литературу для сохранения места
 %\usepackage{etoolbox}
 \patchcmd\thebibliography
@@ -156,42 +151,15 @@
 {}
 {\typeout{Couldn't patch the command}}
 
-% для формирование отступов в enumerate и itemize (ниже)
-\usepackage{\template/contrib/tweaklist}
+%% Подписи к объектам (без ":")
+\captionsetup{labelsep=endash}
+%\captionsetup[figure]{labelsep=endash}
+%\captionsetup[table]{labelsep=endash}
 
-% переопределяем установки для нумерованных перечней
-\renewcommand{\enumhook}{
-	% 1-й абзацный отступ
-	\setlength{\itemindent}{1.7\parindent}
-	% разделитель элементов
-	\setlength{\itemsep}{0mm}
-	% расстояние между маркером и текстом (0,5 кегля)
-	\setlength{\labelsep}{.5em}
-	% ширина маркера
-	\setlength{\labelwidth}{0mm}
-	% 2-й и последующие абзацные отступы
-	\setlength{\listparindent}{1.5\parindent}
-	% отступ списка слева
-	\setlength{\leftmargin}{0mm}
-	% отступ списка справа
-	\setlength{\rightmargin}{0mm}
-	% расстояние между элементами или абзацами
-	\setlength{\parsep}{0mm}
-	% отступ над вложенным списком
-	\setlength{\parskip}{\parskip}
-	% отступ списка
-	\setlength{\partopsep}{0mm}
-	% отступ вложенного списка
-	\setlength{\topsep}{0mm}
-}
-
-% копируем настройки для перечней разного уровня
-\renewcommand{\enumhooki}{\enumhook}
-\renewcommand{\itemhooki}{\enumhook}
-\renewcommand{\enumhookii}{\enumhook}
-\renewcommand{\itemhookii}{\enumhook}
-
-% введем счетчики списка литературы, # глав и приложений [deprecated!]
+%% Счетчики списка литературы, # глав и приложений [deprecated!].
+%% В тексте можно заменить окружения realchapter/appndchapter на
+%% chapter, т.к. они использовались для правильного подсчитывания
+%% глав, приложений и т.п. (сейчас нужно только в автореферате).
 \newtotcounter{bibnum}
 \newtotcounter{chapnum}
 \newtotcounter{appendnum}
@@ -206,34 +174,3 @@
 \def\bibcite{\stepcounter{bibnum}\oldcite}
 \def\realchapter{\stepcounter{chapnum}\oldchap}
 \def\appndchapter{\stepcounter{appendnum}\oldappnd}
-
-% добавим файл с информацией по работе, автору и т.д.
-\input{00-info.tex}
-
-% неизменяемые общие данные
-\date{\today}
-\makeatletter
-\def\dissauthor{\@author}
-\def\disstitle{\@title}
-\def\dissdate{\@date}
-\makeatother
-\def\dissyear{\the\year}
-
-% выставим атрибуты pdf-документа
-\hypersetup{
-	% заголовок
-	pdftitle={\disstitle},
-	% автор
-	pdfauthor={\dissauthor},
-	% тема
-	pdfsubject={\disstitle},
-	% создатель
-	pdfcreator={\dissauthor},
-	% производитель
-	pdfproducer={\dissauthor},
-}
-
-% для переопределения параметров geometry (для правильной работы fancyhdr)
-\makeatletter
-\newcommand{\resetHeadWidth}{\fancy@setoffs}
-\makeatother

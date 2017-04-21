@@ -1,6 +1,17 @@
+% !TEX root = dissertation.tex synopsis.tex
+
 % заголовок
 \author{ФАМИЛИЯ ИМЯ ОТЧЕСТВО автора}
 \title{НАЗВАНИЕ ДИССЕРТАЦИОННОЙ РАБОТЫ}
+
+% неизменяемые общие данные
+\date{\today}
+\makeatletter
+\def\dissauthor{\@author}
+\def\disstitle{\@title}
+\def\dissdate{\@date}
+\makeatother
+\def\dissyear{\the\year}
 
 % специальность, ученая степень, руководитель, консультант, оппоненты
 \def\specnum{ХХ.ХХ.ХХ}
@@ -42,7 +53,18 @@
 \def\councilsecretarydegree{уч. степень, уч. звание}
 \def\councilsecretaryname{И.О.~Фамилия}
 
-% дополнительные атрибуты pdf-документа (ключевые слова)
+% выставим атрибуты pdf-документа
 \hypersetup{
-	pdfkeywords={keyword1} {keyword2}
+  % заголовок
+  pdftitle={\disstitle},
+  % автор
+  pdfauthor={\dissauthor},
+  % тема
+  pdfsubject={\disstitle},
+  % создатель
+  pdfcreator={\dissauthor},
+  % производитель
+  pdfproducer={\dissauthor},
+  % ключевые слова
+  pdfkeywords={keyword1} {keyword2}
 }
