@@ -9,21 +9,21 @@ for /f "delims=" %%i in ('where /R %LOCALAPPDATA%\GitHub perl') do set perl_bin=
 
 :: set path for local or template-usecase
 if "%~1"=="" (
-	set mypath=.
+	set mypath=
 ) else (
 	set mypath=%~1
 )
 
-set dissertation=%mypath%\dissertation
+set dissertation=%mypath%dissertation
 set dissertation-bib=dissertation
-set synopsis=%mypath%\synopsis
+set synopsis=%mypath%synopsis
 set synopsis-bib=synopsis
-set booklet=%mypath%\booklet
+set booklet=%mypath%booklet
 
 :: dissertation
 %texlive_bin%pdflatex.exe %dissertation%.tex || goto :error
 %texlive_bin%bibtex.exe %dissertation-bib% || goto :error
-%perl_bin% %mypath%\contrib\bbl-sorter.pl || goto :error
+%perl_bin% %mypath%contrib\bbl-sorter.pl || goto :error
 %texlive_bin%makeindex.exe %dissertation-bib%.nlo -s nomencl.ist -o %dissertation-bib%.nls || goto :error
 %texlive_bin%pdflatex.exe %dissertation%.tex || goto :error
 :: some elements (bib, nom) could not be build
