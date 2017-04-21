@@ -120,6 +120,9 @@ spelldata: $(PARTS) $(PARTS_SYNOPSIS)
 
 clean:
 	rm -f *.aux *.log *.ps *.lof *.lot *.out *.toc *.pdf *.blg *.bbl *.nls *.nlo *.ilg
+	rm -f $(template)/*.aux
 	rm -f $(template)/contrib/*.aux
 	rm -f parts/*.aux parts/*.bbl parts/*.blg
+	rm -f $(template)/parts/*.aux
 	rm -f synopsis-parts/*.aux synopsis-parts/*.bbl synopsis-parts/*.blg
+	rm -f $(template)/synopsis-parts/*.aux
