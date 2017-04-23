@@ -77,7 +77,7 @@ $(document): $(document).tex $(PARTS)
 	$(PDFLATEX) $(document).tex
 	$(PDFLATEX) $(document).tex
 
-$(synopsis): $(synopsis).tex $(PARTS_SYNOPSIS)
+$(synopsis): $(document) $(synopsis).tex $(PARTS_SYNOPSIS)
 	$(PDFLATEX) $(synopsis).tex
 	$(BIBTEX) $(synopsis-bib)1
 	$(BIBTEX) $(synopsis-bib)2

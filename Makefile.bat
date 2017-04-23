@@ -56,5 +56,5 @@ goto :EOF
 
 :error
 echo Failed with error #%errorlevel%. Check the error messages above...
-::pause
+pause
 exit /b %errorlevel%
