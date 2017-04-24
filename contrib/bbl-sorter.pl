@@ -1,3 +1,4 @@
+#!/usr/bin/perl
 #
 # phdtex
 #
@@ -6,8 +7,6 @@
 #
 # SPDX-License-Identifier: MIT
 #
-
-#!/usr/bin/perl
 
 # script for sorting .bbl files (Russian items first, English items
 # second)
