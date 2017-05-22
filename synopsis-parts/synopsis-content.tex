@@ -59,8 +59,10 @@
 \dots{} какая-нибудь таблица (см. таблицу \ref{test2}) \dots{}
 
 \setcounter{rowcount}{0}
-\captionsetup{belowskip=-10pt}
+%\captionsetup{belowskip=-10pt}
 \begin{longtable}{|c|c|c|}
+  \caption{Подпись таблицы} \label{test2} \\
+
   \hline
 
   \textbf{№} & \begin{tabular}{@{}l@{}}\textbf{Текст1} \\
@@ -91,8 +93,6 @@
 
   \rownumber & \cellcolor{red!25}Текст & \cellcolor{yellow!25}Текст \\
   \hline
-
-  \caption{Подпись таблицы} \label{test2}
 
 \end{longtable}
 
