@@ -1,6 +1,8 @@
 phdtex [for English users]
 ==========================
 
+[![Build Status](https://travis-ci.org/kanner/phdtex.svg?branch=master)](https://travis-ci.org/kanner/phdtex)
+
 PhD latex template more or less satisfying the requirements of
 Russian-specific GOST R 7.0.11-2011 (dissertation text, synopsis).
 

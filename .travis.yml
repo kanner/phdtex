@@ -1,0 +1,61 @@
+#
+# phdtex travis CI configuration
+# inspired by https://github.com/harshjv/travis-ci-latex-pdf
+#
+# Copyright (c) 2017, Andrew Kanner <andrew.kanner@gmail.com>.
+# All rights reserved.
+#
+# SPDX-License-Identifier: MIT
+#
+sudo: required
+dist: trusty
+services:
+- docker
+before_install:
+# 1. texlive-current: this is too expensive
+#- wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
+#- tar xzf install-tl-unx.tar.gz
+#- cd install-tl-*
+#- export TEXMFHOME=~/.texlive$(date +'%F') && export TEXDIR=/usr/local/texlive/$(date +'%F') && echo i | sudo ./install-tl
+#
+# 2. trusty-native: some problems with texlive-2013 (pgfplots is too old)
+#- sudo apt-get -qq update
+#- sudo apt-get install -y --no-install-recommends texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra texlive-latex-recommended dvipng
+#- sudo apt-get install -y --no-install-recommends texlive-lang-cyrillic latex-xcolor texlive-pictures pgf
+#
+# 3. trusty-upgrade: upgrade fails
+#- sudo apt-get -qq update && sudo apt-get -qy dist-upgrade
+#- sudo apt-get install -qy --no-install-recommends texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra dvipng
+#- sudo apt-get install -qy --no-install-recommends texlive-lang-cyrillic latex-xcolor texlive-pictures pgf
+#- sudo apt-get -q clean
+#
+# 4. docker: this is too expensive
+#- docker pull gentoo/stage3-amd64
+#- docker create -v /usr/portage --name myportagesnapshot gentoo/portage:latest /bin/true
+##- docker run -d -p 127.0.0.1:80:4567 gentoo/stage3-amd64 /bin/sh -c "echo \"=dev-tex/pscyr-0.4d_beta9 ~amd64\" >> /etc/portage/package.accept_keywords && emerge texlive texlive-core texlive-latexextra texlive-pstricks texlive-langcyrillic texlive-bibtexextra pscyr make"
+#- docker run --volumes-from myportagesnapshot gentoo/stage3-amd64:latest /bin/bash -c "echo \"=dev-tex/pscyr-0.4d_beta9 ~amd64\" >> /etc/portage/package.accept_keywords && emerge texlive texlive-core texlive-latexextra texlive-pstricks texlive-langcyrillic texlive-bibtexextra pscyr make"
+##- docker ps -a
+#
+# 5. docker-special: image with gentoo, texlive installed
+- docker pull akanner/gentoo-texlive
+script:
+# 1-3. native build
+#- ./externals/pscyr-install.sh
+#- make -j5
+#
+# 4-5. docker build
+#- docker run --user="$(id -u):$(id -g)" --net=none -v $(pwd):/src gentoo/stage3-amd64:latest make -C src -j5
+- docker run --rm -v $(pwd):/src akanner/gentoo-texlive:latest make -C src -j5
+deploy:
+  provider: releases
+  api_key:
+    secure: al0L0gpVhjsvYP3+tSxNzhzXzyqylij4NMgLvA4vNwNmurY2aUwvLAw6hRBNfOJyTjvnuILF+t21rCHnEmjxhruaCCQ6rbnOGjdGKikILtUfE6wcbz02N/BzIuJT7yvy/atC7L6DpkbTSg9Jpgki5ycBt8LUOdMEPFcejs36+2VMXg69dP6nqGYJ0jjIqECxm8IIGlBfheqO8vrjmmmEl+WM/FeoUA2FH1v/7HOe0fUV6Px7X4dxzrpHDep3iRNRwBsH5btvZqR3xvZ0IphEj5qbukHOgq6Yq27OMWy9nbf+Z5Jnu1WpnhTIjqDMgg3VW7lQwI4Nn5IKsr5DKi7Pja8CD+o7NeHtwMJIFLaGse2TlOSrkfEhLZ0gzfhKqckFlLH1wByJx5aYCVl4W61AdV5Ron3PA8gHFEAybfbFLvMKx8eqSnpvS+ri250r5g+I8szf4dQckSB2GryYZrMedRBtztEdjddQh1thM7XkpKf6L3wh38CtGlY2xXiXNPSOl33eJHUbD7hD+S3uXTI9l+OLI+T4Uc62q9mfz0eyXF5HeUvzUF7WnJWpL5oPka33Az+Ggo7khr8zBHyRB3ml0noz5euqf33WlXwi/sIWf9tv4QOklHXnInWg5t5of7umc8Q4KqK0X/xt8ePJ+6pAazE9rnTbWmQVjpvYk0rfbWY=
+  file:
+    - dissertation.pdf
+    - synopsis.pdf
+    - booklet.pdf
+  skip_cleanup: true
+  on:
+    repo: kanner/phdtex
+    tags: true
+#  overwrite: true

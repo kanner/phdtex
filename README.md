@@ -1,6 +1,8 @@
 phdtex
 ======
 
+[![Build Status](https://travis-ci.org/kanner/phdtex.svg?branch=master)](https://travis-ci.org/kanner/phdtex)
+
 Шаблон диссертации, более или менее соответствующий требованиям
 российского ГОСТ Р 7.0.11-2011 (текст диссертации, автореферат).
 
