@@ -127,6 +127,13 @@ using latex for this was not my target. If you want to use latex for
 presentation &ndash; check current version of submodule in
 _./externals_.
 
+With texlive 2014 the error "No room for a new \dimen" can arise
+during build. To exclude this error use last commit from
+[**texlive-2014**](https://github.com/kanner/phdtex/tree/texlive-2014)
+branch or manually add `\usepackage{etex}` to
+dissertation.tex/synopsis.tex just after the lines with
+`\documentclass...`.
+
 ## Licenses (mixed licensing)
 
 The main content of this project is licensed under the **MIT** license
