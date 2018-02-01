@@ -10,19 +10,41 @@
 %
 
 \clearpage
-\phantomsection \addcontentsline{toc}{chapter}{\listfigurename}
-% список изображений
-\listoffigures
-\newpage
-
-\clearpage
-\phantomsection \addcontentsline{toc}{chapter}{\listtablename}
-% cписок таблиц
-\listoftables
-\newpage
-
-\clearpage
 \phantomsection \addcontentsline{toc}{chapter}{\nomname}
 % список сокращений и условных обозначений
 \printnomenclature
 \newpage
+
+% список литературы
+\input{\template/parts/references}
+% раскомментировать для пометки не вошедших источников из bibtex-баз
+%\nocite{*}
+
+% список иллюстративного материала (ГОСТ Р 7.0.11-2011, стр.2)
+\clearpage
+\phantomsection \addcontentsline{toc}{chapter}{Список иллюстративного материала}
+\begin{singlespace}
+  \realchapter*{Список иллюстративного материала}
+\end{singlespace}
+
+% список изображений
+\listoffigures
+% сгруппировано, чтобы не создавать на новой странице
+\begingroup
+\let\clearpage\relax
+% cписок таблиц
+\listoftables
+\endgroup
+\newpage
+
+%\clearpage
+%\phantomsection \addcontentsline{toc}{chapter}{\listfigurename}
+%% список изображений
+%\listoffigures
+%\newpage
+
+%\clearpage
+%\phantomsection \addcontentsline{toc}{chapter}{\listtablename}
+%% cписок таблиц
+%\listoftables
+%\newpage

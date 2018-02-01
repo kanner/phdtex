@@ -60,12 +60,15 @@
 \titlespacing*{\chapter}{0pt}{*0}{2ex}
 \titlelabel{\thetitle.\quad}
 
-% изменение размера заголовка Содержания
-\renewcommand{\cfttoctitlefont}{\Large\bfseries}
+% изменение размера заголовка Оглавление, центрирование
+\renewcommand{\cfttoctitlefont}{\hfill\large\bfseries}
+\renewcommand{\cftaftertoctitle}{\hfill}
 % "." после номеров разделов
 \renewcommand{\cftchapaftersnum}{.}
 \renewcommand{\cftsecaftersnum}{.}
 \renewcommand{\cftsubsecaftersnum}{.}
+\setlength\cftbeforetoctitleskip{0pt}
+\setlength\cftaftertoctitleskip{0pt}
 
 % singlespacing в заголовках (вставлено в основной текст)
 % deprecated варианты:
@@ -139,11 +142,15 @@
   \setlength{\parindent}{\backupindent}%
 }{\endenumerate}
 
-%% Список рисунков и таблиц (изменение размера)
-\renewcommand\cftloftitlefont{\hspace*{\fill}\normalsize\bf}
+%% Список рисунков и таблиц (изменение размера, отступов)
+\renewcommand\cftloftitlefont{\hspace*{\fill}\normalsize}
 \renewcommand{\cftafterloftitle}{\hspace*{\fill}}
-\renewcommand\cftlottitlefont{\hspace*{\fill}\normalsize\bf}
+\renewcommand\cftlottitlefont{\hspace*{\fill}\normalsize}
 \renewcommand{\cftafterlottitle}{\hspace*{\fill}}
+\setlength\cftbeforeloftitleskip{0pt}
+\setlength\cftafterloftitleskip{0pt}
+\setlength\cftbeforelottitleskip{0pt}
+\setlength\cftafterlottitleskip{0pt}
 
 %% Список сокращений
 \usepackage{nomencl}
