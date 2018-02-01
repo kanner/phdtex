@@ -413,11 +413,15 @@ FUNCTION {bbl.of}      %  { "\bblof{}" }
 
 FUNCTION {bbl.etal}      %  { "\bblof{}" }
 {  curlanguage "english" =
-    {"et~al."}
+%    {"et~al."}
+    % using brackets
+    {"{[et~al.]}"}
     { curlanguage "ukrainian" =
         {"{та~ін.}"}
         { curlanguage "russian" =
-           {"{и~др.}"}
+%	   {"{и~др.}"}
+	   % using brackets too
+           {"{[и~др.]}"}
            {"language is not defined: " language  "at al" * * warning$ "at al."}
          if$}
       if$}
@@ -516,9 +520,13 @@ FUNCTION {bbl.ppages}%    { "\bblPp." }
 
 FUNCTION {bbl.ppage}  %   { "\bblP." }
 {  curlanguage "english" =
-    {"P."}
+     % this should be lowercase (GOST 7.1-2003)
+%    {"P."}
+    {"p."}
     { curlanguage "ukrainian" = curlanguage "russian" = or
-           {"{С.}"}
+           % this should be lowercase too (GOST 7.1-2003)
+%           {"{С.}"}
+           {"{с.}"}
            {"language is not defined: " language  "P." * * warning$ "P."}
       if$}
   if$
@@ -532,7 +540,7 @@ FUNCTION {bbl.phdthesis} { "Ph.D. thesis" }
 INTEGERS { nameptr namesleft numnames }
 
 
-FUNCTION {format.names}
+FUNCTION {origformat.names}
 { 's :=
   #1 'nameptr :=
   s num.names$ 'numnames :=
@@ -540,6 +548,47 @@ FUNCTION {format.names}
     { namesleft #0 > }
     { s nameptr
       "{vv~}{ll}{~jj}{~ff}" format.name$ 't :=
+      nameptr #1 >
+        {
+          nameptr #4 =
+          numnames #4 > and
+            { "others" 't :=
+              #1 'namesleft := }
+            'skip$
+          if$
+          namesleft #1 >
+            { ", " * t * }
+            {
+              t "others" =
+      t "~others" =
+      or
+                { " " * bbl.etal * }
+                { ", " * t * }
+              if$
+            }
+          if$
+        }
+        't
+      if$
+      nameptr #1 + 'nameptr :=
+      namesleft #1 - 'namesleft :=
+    }
+  while$
+}
+
+
+FUNCTION {format.names}
+{ 's :=
+  #1 'nameptr :=
+  s num.names$ 'numnames :=
+  numnames 'namesleft :=
+  % print only first author, others in author.after
+%    { namesleft #0 > }
+    { nameptr #1 = }
+    { s nameptr
+      % insert comma after LastName
+%      "{vv~}{ll}{~jj}{~ff}" format.name$ 't :=
+      "{vv~}{ll}{~jj}{, ~ff}" format.name$ 't :=
       nameptr #1 >
         {
           nameptr #4 =
@@ -580,8 +629,11 @@ FUNCTION {format.names.rev}
       format.name$ 't :=
       nameptr #1 >
         {
-          nameptr #4 =
-          numnames #4 > and
+%          nameptr #4 =
+%          numnames #4 > and
+          % leave only first author (if there are 4 or above, GOST 7.1-2003
+          nameptr #2 =
+          numnames #3 > and
             { "others" 't :=
               #1 'namesleft := }
             'skip$
@@ -687,7 +739,12 @@ FUNCTION {output.address.publisher.date}
           if$
         }
         if$
-        publisher output
+        % add additional space after the Address (GOST 7.1-2003)
+%        publisher output
+	address empty$
+	  {publisher output}
+	  {"~" * publisher output}
+	  if$
         format.date output
 }
 
@@ -863,7 +920,9 @@ FUNCTION {format.pages}
     { "" }
     { pages multi.page.check
         { bbl.ppages pages n.dashify tie.connect }
-        { bbl.ppage pages tie.connect }
+        % total number of pages should be first (books, etc)
+%        { bbl.ppage pages tie.connect }
+        { pages bbl.ppage tie.connect }
       if$
     }
   if$
@@ -975,11 +1034,12 @@ FUNCTION {author.after}
 {
   author empty$
     'skip$
-    {author num.names$ #3 >
+    % all authors after title (GOST 7.1-2003)
+%    {author num.names$ #3 >
       {format.authors.after output
        new.semicolumn }
-      'skip$
-    if$}
+%      'skip$
+%    if$}
   if$
 }
 FUNCTION {bookauthor.after}
@@ -1020,7 +1080,7 @@ FUNCTION {format.url}
 { url empty$
     { "" }
     { after.sentence 'output.state :=
-      "[Электронный ресурс]. URL: \BibUrl{ " url * "}" *
+      "[Электронный ресурс] -- URL: \BibUrl{ " url * "}" *
     }
   if$
 }
