@@ -20,11 +20,11 @@ BIBTEX=bibtex
 NOMENCL=makeindex
 BIBTEXHELPER = $(template)/contrib/bbl-sorter.pl
 
-document = $(template)/dissertation
+document = dissertation
 document-bib = dissertation
-synopsis = $(template)/synopsis
+synopsis = synopsis
 synopsis-bib = synopsis
-booklet = $(template)/booklet
+booklet = booklet
 
 COMMON += \
 	$(template)/contrib/names.tex \
