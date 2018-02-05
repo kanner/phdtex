@@ -23,11 +23,11 @@ if "%~1"=="" (
 	set mypath=%~1
 )
 
-set dissertation=%mypath%dissertation
+set dissertation=dissertation
 set dissertation-bib=dissertation
-set synopsis=%mypath%synopsis
+set synopsis=synopsis
 set synopsis-bib=synopsis
-set booklet=%mypath%booklet
+set booklet=booklet
 
 :: dissertation
 %texlive_bin%pdflatex.exe %dissertation%.tex || goto :error
