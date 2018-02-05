@@ -60,38 +60,38 @@
 
 \setcounter{rowcount}{0}
 %\captionsetup{belowskip=-10pt}
-\begin{longtable}{|c|c|c|}
-  \caption{Подпись таблицы} \label{test2} \\
+\begin{longtable}{|p{0.2\linewidth}|c|}
+  \caption{Подпись таблицы -- сверху} \label{test2} \\
 
   \hline
 
-  \textbf{№} & \begin{tabular}{@{}l@{}}\textbf{Текст1} \\
-                 \textbf{Текст2}\end{tabular} & Текст3 \\
+  \begin{tabular}{@{}l@{}}\textbf{Текст1} \\
+                 \textbf{Текст2}\end{tabular} & \textbf{Текст3} \\
 
   \hline
   \endfirsthead
 
-  \multicolumn{3}{|c|}{\small (продолжение таблицы)} \\
+  \multicolumn{2}{l}{\small Продолжение таблицы \ref{test2}} \\
   \hline
 
-  \textbf{№} & \begin{tabular}{@{}l@{}}\textbf{Текст1} \\
-                 \textbf{Текст2}\end{tabular} & Текст3 \\
+  \begin{tabular}{@{}l@{}}\textbf{Текст1} \\
+                 \textbf{Текст2}\end{tabular} & \textbf{Текст3} \\
 
   \hline
   \endhead %\hline
 
-  \multicolumn{3}{|r|}{\small (продолжение следует)} \\ \hline
+  \multicolumn{2}{|r|}{} \\
 
   \endfoot %\hline
   \endlastfoot
 
-  \rownumber & \cellcolor{green!25}Текст & \cellcolor{red!25}Текст \\
+  \rownumber{} \cellcolor{green!25}Отдельный & \cellcolor{red!25}столбец \\
   \hline
 
-  \rownumber & \cellcolor{yellow!25}Текст & \cellcolor{green!25}Текст \\
+  \rownumber{} \cellcolor{yellow!25}с нумерацией & \cellcolor{green!25}делать \\
   \hline
 
-  \rownumber & \cellcolor{red!25}Текст & \cellcolor{yellow!25}Текст \\
+  \rownumber{} \cellcolor{red!25}нельзя, см. & \cellcolor{yellow!25}ГОСТ 2.105-95 \\
   \hline
 
 \end{longtable}
