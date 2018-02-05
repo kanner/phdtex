@@ -1,4 +1,4 @@
-%% Copyright (c) 2015, Andrew Kanner <andrew.kanner@gmail.com>.
+%% Copyright (c) 2015,2017, Andrew Kanner <andrew.kanner@gmail.com>.
 %% Modified for use with Russian specific requirements from GOST 7.1-2003
 %%
 %% This is file `utf8gost71s.bst',
