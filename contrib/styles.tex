@@ -46,21 +46,55 @@
 % разреженность, стандартный порог: 200
 %\tolerance=400
 
+% кастомные стили для теорем, утверждений и прочего
+\newtheoremstyle{plain-indent} % name
+{\topsep} % Space above
+{\topsep} % Space below
+{\itshape} % Body font
+%{0pt} % Indent amount
+{\parindent} % [New] indent to match GOST
+{\bfseries} % Theorem head font
+{.} % Punctuation after theorem head
+{5pt plus 1pt minus 1pt} % Space after theorem head
+{} % Theorem head spec
+
+\newtheoremstyle{definition-indent}
+{\topsep}
+{\topsep}
+{\normalfont} % diff
+%{0pt}
+{\parindent}
+{\bfseries}
+{.}
+{5pt plus 1pt minus 1pt}
+{}
+
+\newtheoremstyle{remark-indent}
+{0.5\topsep} % diff
+{0.5\topsep} % diff
+{\normalfont} % diff
+%{0pt}
+{\parindent}
+{\itshape} % diff
+{.}
+{5pt plus 1pt minus 1pt}
+{}
+
 %% Математические конструкции (теоремы, утверждения и т.д.)
 % стиль по умолчанию
-\theoremstyle{plain}
+\theoremstyle{plain-indent}
 \newtheorem{theorem}{Теорема}
 \newtheorem{proposition}{Утверждение}
 \newtheorem{lemma}{Лемма}
 % стиль определений
-\theoremstyle{definition}
+\theoremstyle{definition-indent}
 \newtheorem{corollary}{Следствие}
 \newtheorem{problem}{Задача}[section]
 \newtheorem{condition}{Условие}
 \newtheorem{definition}{Определение}
 \newtheorem{axiom}{Аксиома}
 % стиль примечаний
-\theoremstyle{remark}
+\theoremstyle{remark-indent}
 \newtheorem*{nonum}{Решение}
 
 %% Цветовые эффекты (выделение текста)
