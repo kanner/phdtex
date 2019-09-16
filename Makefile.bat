@@ -14,7 +14,9 @@
 :: it should work if LaTeX distribution is correctly set in %PATH%
 set texlive_bin=
 :: set perl_bin - only works with GitHub client installed
-for /f "delims=" %%i in ('where /R %LOCALAPPDATA%\GitHub perl') do set perl_bin=%%i
+::for /f "delims=" %%i in ('where /R %LOCALAPPDATA%\GitHub perl') do set perl_bin=%%i
+:: set perl_bin for http://strawberryperl.com/
+set perl_bin=perl
 
 :: set path for local or template-usecase
 if "%~1"=="" (
