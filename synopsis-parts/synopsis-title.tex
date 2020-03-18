@@ -3,7 +3,7 @@
 %
 % phdtex
 %
-% Copyright (c) 2014-2018, Andrew Kanner <andrew.kanner@gmail.com>.
+% Copyright (c) 2014-2020, Andrew Kanner <andrew.kanner@gmail.com>.
 % All rights reserved.
 %
 % SPDX-License-Identifier: MIT
@@ -27,7 +27,7 @@
 {\large \dissauthor}
 \end{center}
 
-\vspace{15mm}
+\vspace{10mm}
 \begin{center}
 {\large \MakeUppercase{\disstitle}
 \par}
@@ -61,28 +61,43 @@
 \noindent Диссертационная работа выполнена в \dissorgsyn.
 
 \begin{table}[h]
-  \begin{tabular}{@{}ll}
-    \makecell[l]{Научный руководитель:\\~\\~\\~\\~\\~\\~} &
-                                                   \makecell*[{{p{10cm}}}]{\textbf{\mentorname} \\ \mentordegree, \mentorcompany}\\
+	\begin{tabular}{@{}ll}
 
-                                                   % \vspace{3mm} \\
+	% Научный руководитель -- 6 строк (ФИО, ученое звание, должность)
+	\makecell[l]{Научный руководитель:\\~\\~\\~\\~\\~} &
+		\makecell*[{{p{10cm}}}]{
+			\textbf{\mentorname} \\ \mentordegree, \mentorcompany
+		}\\
+	%\vspace{1mm}
 
-    \makecell[l]{Научный консультант:\\~\\~} &
-                                               \makecell*[{{p{10cm}}}]{\textbf{\consultantname} \\ \consultantdegree, \consultantcompany}
+	% Научный консультант -- 3 строки
+	\makecell[l]{Научный консультант:\\~\\~} &
+		\makecell*[{{p{10cm}}}]{
+			\textbf{\consultantname} \\ \consultantdegree, \consultantcompany
+		}\\
+	%\vspace{1mm}
 
-    \vspace{2mm} \\
+	% Оппоненты -- по 4 строки
+	\makecell[l]{Официальные оппоненты:\\~\\~\\~} &
+		\makecell[{{p{10cm}}}]{
+			\textbf{\opponentonename} \\ \opponentonedegree, \opponentonecompany
+		}\\
+	\vspace{3mm}
 
-    \makecell[l]{Официальные оппоненты:\\~\\~\\~\\~\\~\\~\\~\\~\\~} &
-                                                          \makecell[{{p{10cm}}}]{
-                                                          \textbf{\opponentonename} \\ \opponentonedegree, \opponentonecompany \\\\
-    \textbf{\opponenttwoname} \\ \opponenttwodegree, \opponenttwocompany \\\\
-     \textbf{\opponentthreename} \\ \opponentthreedegree, \opponentthreecompany
-    }
+	\makecell[l]{~\\~\\~\\~} &
+		\makecell[{{p{10cm}}}]{
+			\textbf{\opponenttwoname} \\ \opponenttwodegree, \opponenttwocompany
+		}\\
+	\vspace{3mm}
 
-    \vspace{2mm} \\
+	\makecell[l]{~\\~\\~\\~} &
+		\makecell[{{p{10cm}}}]{
+			\textbf{\opponentthreename} \\ \opponentthreedegree, \opponentthreecompany
+		}
 
- %   \makecell[l]{Ведущая организация:} &
-  %                                       \makecell*[{{p{11cm}}}]{\textbf{\leadingorg}}
+	%\vspace{3mm}
+%	\makecell[l]{Ведущая организация:} &
+%		\makecell*[{{p{11cm}}}]{\textbf{\leadingorg}}
   \end{tabular}
 \end{table}
 
@@ -90,12 +105,12 @@
 часов на~заседании диссертационного совета \councilnum{} при
 \councilplace{} по адресу: \counciladdress.
 
-\vspace{3mm}
+\vspace{1mm}
 \noindent С диссертацией можно ознакомиться в библиотеке
 \libraryname{} и на сайте:
 \councilwebsite{}. % по адресу: \libraryaddress.
 
-\vspace{3mm}
+\vspace{1mm}
 \noindentАвтореферат разослан \hly{\synopsissentdate}.
 
 \vfill
