@@ -3,7 +3,7 @@
 %
 % phdtex
 %
-% Copyright (c) 2014-2017, Andrew Kanner <andrew.kanner@gmail.com>.
+% Copyright (c) 2014-2020, Andrew Kanner <andrew.kanner@gmail.com>.
 % All rights reserved.
 %
 % SPDX-License-Identifier: CC-BY-4.0
@@ -22,14 +22,19 @@
 % введение
 \input{02-introduction}
 
-% автоматически проставить значения переменных как в тексте
-% диссертации тут нельзя -- обновлять нужно вручную (в тексте --
-% \total{chapnum}, \total{appendnum}, \pageref{LastPage},
-% \total{bibnum} и другие)
+% автоматически проставим значения счетчиков из текста диссертации
+\getcounter{mychapters}
+\getcounter{myappendices}
+\getcounter{mypages}
+\getcounter{myfigures}
+\getcounter{mytables}
+\getcounter{mybibitems}
+
 \underline{Структура и объем работы}. Диссертационная работа состоит
-из~введения, \hly{X} глав, заключения и~\hly{X} приложений. Объем
-основного текста диссертации составляет \hly{XXX}~страниц
-с~\hly{XX}~рисунками и~\hly{XX}~таблицами. Приложение также содержит
-документы, подтверждающие практическое использование и внедрение
-результатов диссертационного исследования. Количество наименований в
-списке литературы --- \hly{XXX}.
+из~введения, \themychapters~глав, заключения
+и \themyappendices~приложений. Объем основного текста диссертации
+составляет \themypages~страниц(ы) с \themyfigures~рисунками
+и \themytables~таблицами. Приложение также содержит документы,
+подтверждающие практическое использование и внедрение результатов
+диссертационного исследования. Количество наименований в списке
+литературы --- \themybibitems.

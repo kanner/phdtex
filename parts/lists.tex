@@ -3,11 +3,16 @@
 %
 % phdtex
 %
-% Copyright (c) 2014-2018, Andrew Kanner <andrew.kanner@gmail.com>.
+% Copyright (c) 2014-2020, Andrew Kanner <andrew.kanner@gmail.com>.
 % All rights reserved.
 %
 % SPDX-License-Identifier: MIT
 %
+
+% установим счетчики для автореферата
+% \total{chapnum}
+\setcounter{mychapters}{\value{chapnum}}
+\storecounter{mychapters}
 
 \clearpage
 \phantomsection \addcontentsline{toc}{chapter}{\nomname}
@@ -35,7 +40,7 @@
 % cписок таблиц
 \listoftables
 \endgroup
-\newpage
+%\newpage
 
 %\clearpage
 %\phantomsection \addcontentsline{toc}{chapter}{\listfigurename}
@@ -48,3 +53,29 @@
 %% cписок таблиц
 %\listoftables
 %\newpage
+
+
+% продолжим устанавливать счетчики для автореферата
+% \pageref{LastPage}
+\label{mylastpage}
+\setcounterpageref{mypages}{mylastpage}
+\storecounter{mypages}
+
+% \totalfigures{}
+% обновим последний раз как при начале главы
+%\addtocounter{fignum}{\value{figure}}
+\setcounter{myfigures}{\value{fignum}}
+\storecounter{myfigures}
+
+% \totaltables{}
+% обновим последний раз как при начале главы
+%\addtocounter{tabnum}{\value{table}}
+\setcounter{mytables}{\value{tabnum}}
+\storecounter{mytables}
+
+% \total{bibnum}/\total{citenum}
+\setcounter{mybibitems}{\value{bibnum}}
+\storecounter{mybibitems}
+
+% продолжение в parts/appendix.tex
+\newpage

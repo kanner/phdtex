@@ -1,7 +1,7 @@
 %
 % phdtex
 %
-% Copyright (c) 2014-2018, Andrew Kanner <andrew.kanner@gmail.com>.
+% Copyright (c) 2014-2020, Andrew Kanner <andrew.kanner@gmail.com>.
 % All rights reserved.
 %
 % SPDX-License-Identifier: MIT
@@ -182,6 +182,8 @@
 \newtotcounter{bibnum}
 \newtotcounter{chapnum}
 \newtotcounter{appendnum}
+\newtotcounter{fignum}
+\newtotcounter{tabnum}
 % сохраненный object
 \def\oldcite{}
 \def\oldchap{}
@@ -191,5 +193,6 @@
 \let\oldappnd=\chapter
 % object = object + увеличение счетчика %
 \def\bibcite{\stepcounter{bibnum}\oldcite}
-\def\realchapter{\stepcounter{chapnum}\oldchap}
+% счетчики рисунков и таблиц сбрасываются в главах -- просуммируем
+\def\realchapter{\stepcounter{chapnum}\addtocounter{fignum}{\value{figure}}\addtocounter{tabnum}{\value{table}}\oldchap}
 \def\appndchapter{\stepcounter{appendnum}\oldappnd}

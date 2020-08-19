@@ -1,7 +1,7 @@
 #
 # phdtex
 #
-# Copyright (c) 2014-2017, Andrew Kanner <andrew.kanner@gmail.com>.
+# Copyright (c) 2014-2020, Andrew Kanner <andrew.kanner@gmail.com>.
 # All rights reserved.
 #
 # SPDX-License-Identifier: MIT
@@ -58,7 +58,7 @@ PARTS_SYNOPSIS += \
 	parts/biblio-pub-sheet.bib \
 	parts/biblio-scopus-sheet.bib \
 	parts/biblio-vak-sheet.bib \
-	parts/intro-syn.tex \
+	$(template)/parts/intro-syn.tex \
 	synopsis-parts/synopsis-content.tex \
 	$(template)/synopsis-parts/synopsis-references.tex \
 	synopsis-parts/synopsis-results.tex \

@@ -1,7 +1,7 @@
 %
 % phdtex
 %
-% Copyright (c) 2014-2017, Andrew Kanner <andrew.kanner@gmail.com>.
+% Copyright (c) 2014-2020, Andrew Kanner <andrew.kanner@gmail.com>.
 % All rights reserved.
 %
 % SPDX-License-Identifier: MIT
@@ -26,11 +26,9 @@
 % synopsis-parts/synopsis-results}
 
 % для использования ссылок на страницы текста диссертации
-\usepackage{xr}
-\externaldocument{03-part1}
-\externaldocument{04-part2}
-\externaldocument{05-part3}
-\externaldocument{06-part4}
+\usepackage{refcount,xr}
+\externaldocument{\template/parts/lists}
+\externaldocument{parts/appendix}
 
 % раздельная библиография в автореферате [переопределяет styles.tex!]
 \usepackage{bibtopic}
@@ -59,7 +57,7 @@
 \resetHeadWidth
 
 % текст введения находится в introduction.tex
-\input{parts/intro-syn}
+\input{\template/parts/intro-syn}
 % содержание работы по главам, основные результаты и выводы
 \input{synopsis-parts/synopsis-content}
 \input{synopsis-parts/synopsis-results}

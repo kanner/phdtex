@@ -3,7 +3,7 @@
 %
 % phdtex
 %
-% Copyright (c) 2014-2018, Andrew Kanner <andrew.kanner@gmail.com>.
+% Copyright (c) 2014-2020, Andrew Kanner <andrew.kanner@gmail.com>.
 % All rights reserved.
 %
 % SPDX-License-Identifier: CC-BY-4.0
@@ -111,5 +111,9 @@
 
 %%\includepdf{./images/regcert.pdf}
 %\includegraphics[width=0.95\textwidth,height=0.95\textheight,keepaspectratio]{./images/regcert.pdf}
+
+% \total{appendnum}
+\setcounter{myappendices}{\value{appendnum}}
+\storecounter{myappendices}
 
 %\clearpage
