@@ -11,6 +11,10 @@
 
 \appendix
 
+% исключить из template/parts/lists.tex в \listoffigures
+% и \listoftables сущности Приложения
+\captionsetup{list=no}
+
 % вернем формат для описания слова "Приложение"
 \titleformat{\chapter}[display]{\centering\bf}{\chaptertitlename\
   \thechapter}{10pt}{\bf}
