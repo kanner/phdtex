@@ -15,4 +15,4 @@ git checkout texlive-2018-fancyhdr && git rebase master
 git checkout texlive-2018+texstudio && git rebase texlive-2018-fancyhdr
 git checkout texlive-2018+texstudio-stperl && git rebase texlive-2018+texstudio
 git checkout master
-git push -f && git push -f okbrepo
+git push -f --all -u okbrepo && git push -f --all -u
