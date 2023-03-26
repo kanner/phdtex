@@ -33,6 +33,7 @@ COMMON += \
 	$(template)/contrib/stylesgost.tex \
 	$(template)/contrib/tweaklist.sty \
 	$(template)/contrib/utf8gost71my.bst \
+	$(template)/contrib/utf8gost71my-unsort.bst \
 	00-info.tex
 
 PARTS += \
@@ -56,8 +57,8 @@ PARTS += \
 PARTS_SYNOPSIS += \
 	$(COMMON) \
 	parts/biblio-pub-sheet.bib \
-	parts/biblio-scopus-sheet.bib \
-	parts/biblio-vak-sheet.bib \
+	parts/biblio-vak-scopus-sheet.bib \
+	parts/biblio-svid-sheet.bib \
 	$(template)/parts/intro-syn.tex \
 	synopsis-parts/synopsis-content.tex \
 	$(template)/synopsis-parts/synopsis-references.tex \
