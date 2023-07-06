@@ -13,7 +13,7 @@ set -ex
 git checkout texstudio-template && git rebase master
 git checkout texlive-2014 && git rebase master
 git checkout texlive-2018-fancyhdr && git rebase master
-#git checkout texlive-2018-fancyhdr-opp1_5 && git rebase master
+git checkout texlive-2018-fancyhdr-opp1_5-2_5-3_4 && git rebase master
 git checkout texlive-2018+texstudio && git rebase texlive-2018-fancyhdr
 git checkout texlive-2018+texstudio-stperl && git rebase texlive-2018+texstudio
 git checkout master
