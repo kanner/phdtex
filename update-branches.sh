@@ -6,9 +6,10 @@ set -ex
 #git checkout remotes/origin/texstudio-template && git checkout -b texstudio-template
 #git checkout remotes/origin/texlive-2014 && git checkout -b texlive-2014
 #git checkout remotes/origin/texlive-2018-fancyhdr && git checkout -b texlive-2018-fancyhdr
-##git checkout remotes/origin/texlive-2018-fancyhdr-opp1_5 && git checkout -b texlive-2018-fancyhdr-opp1_5
+#git checkout remotes/origin/texlive-2018-fancyhdr-opp1_5-2_5-3_4 && git checkout -b texlive-2018-fancyhdr-opp1_5-2_5-3_4
 #git checkout remotes/origin/texlive-2018+texstudio && git checkout -b texlive-2018+texstudio
 #git checkout remotes/origin/texlive-2018+texstudio-stperl && git checkout -b texlive-2018+texstudio-stperl
+#git checkout remotes/origin/texlive-2018+texstudio-stperl-opp1_8 && git checkout -b texlive-2018+texstudio-stperl-opp1_8
 # make changes in master
 git checkout texstudio-template && git rebase master
 git checkout texlive-2014 && git rebase master
@@ -16,5 +17,6 @@ git checkout texlive-2018-fancyhdr && git rebase master
 git checkout texlive-2018-fancyhdr-opp1_5-2_5-3_4 && git rebase master
 git checkout texlive-2018+texstudio && git rebase texlive-2018-fancyhdr
 git checkout texlive-2018+texstudio-stperl && git rebase texlive-2018+texstudio
+git checkout texlive-2018+texstudio-stperl-opp1_8 && git rebase texlive-2018+texstudio
 git checkout master
 git push -f --all -u okbrepo && git push -f --all -u origin
